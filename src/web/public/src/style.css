@@ -1,0 +1,323 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&family=Rubik:wght@300&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    font-family: "Rubik", sans-serif;
+}
+
+body {
+    background-color: rgb(40, 40, 40);
+    color: #ddd;
+}
+
+#popups {
+    position: absolute;
+    pointer-events: none;
+    z-index: 200;
+    overflow-y: hidden;
+}
+
+.title h1 {
+    text-align: center;
+    font-size: 32px;
+    font-family: "Fira Sans", sans-serif;
+}
+
+.links {
+    position: absolute;
+    color: #000000;
+    font-size: 15px;
+    z-index: 50;
+    top: 46px;
+    right: 0px;
+}
+
+details > summary {
+    list-style: none;
+    font-size: 24px;
+}
+
+details[open] summary ~ * {
+    animation: sweep .2s ease-out;
+    margin-left: 1em;
+}
+
+.info .version {
+    display: grid;
+    grid-template-columns: 80px auto 1fr;
+}
+
+.info .version p {
+    display: inline;
+}
+
+.info .version .name {
+    background: transparent;
+    color: #999;
+    -ms-flex: none;
+    flex: none;
+    letter-spacing: 0;
+}
+
+.info .version .num {
+    font-family: 'Fira Mono', monospace;
+    background: transparent;
+    color: #eee;
+    -ms-flex: none;
+    flex: none;
+    letter-spacing: 0;
+}
+
+.info .version .build {
+    background: transparent;
+    color: #999;
+    -ms-flex: none;
+    flex: none;
+    margin-left: 4px;
+    letter-spacing: 0;
+}
+
+.commands summary:first-of-type {
+    list-style-type: none;
+}
+
+.commands ul {
+    color: #ffffff;
+    border-collapse: collapse;
+}
+
+.command {
+    position: relative;
+    background-color: rgb(40, 40, 40);
+    border-radius: 4px;
+    font-size: 16px;
+    margin: 6px;
+    width: 800px;
+    box-shadow: 0 0 1px 0px #000;
+    transition: box-shadow ease-out 0.05s, height 0.1s;
+}
+.command:hover {
+    box-shadow: 0 4px 4px #0003;
+    height: 88px;
+}
+.command[data-subcmd]:hover {
+    height: 106px;
+}
+
+.command .cmd {
+    transition: line-height 0.1s, top 0.1s;
+}
+.command:hover .cmd {
+    line-height: normal;
+    top: 4px;
+}
+
+.command::before {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    border-radius: 4px 0 0 4px;
+    background-color: var(--label-color);
+    --label-color: #5e3;
+    transition: height 0.1s;
+}
+.command[data-admin]::before {
+    --label-color: #e35;
+}
+
+ul > li {
+    list-style: none;
+}
+
+.command p {
+    display: inline;
+}
+
+.command .name {
+    padding-left: 8px;
+    line-height: 32px;
+    opacity: 1;
+    transition: opacity 0.1s;
+}
+.command:hover .name {
+    font-size: 18px;
+}
+
+.command .hyphen {
+    line-height: 32px;
+    opacity: 1;
+    transition: opacity 0.1s;
+    color: #ccc;
+}
+.command:hover .hyphen {
+    opacity: 0;
+}
+
+.command .desc {
+    color: #ccc;
+    line-height: 32px;
+    opacity: 1;
+    transition: opacity 0.1s;
+}
+.command:hover .desc {
+    opacity: 0;
+}
+
+.command .info {
+    position: absolute;
+    color: #ccc;
+    left: 8px;
+    display: none;
+    opacity: 0;
+    transition: display 0.1s, opacity 0.1s;
+    z-index: 10;
+    font-size: 14px;
+}
+.command:hover .info {
+    display: block;
+    opacity: 1;
+}
+
+.command .info span {
+    color: #666;
+}
+
+.sc {
+    margin: 6px;
+    box-shadow: 0 0 1px 0px #000;
+}
+
+.sc details summary p {
+    padding-left: 4px;
+}
+
+.sc::before {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 32px;
+    background-color: rgb(120, 120, 120);
+}
+
+.sc details summary {
+    display: inline;
+    font-size: 20px;
+}
+
+.sc details summary p {
+    display: inline;
+    font-size: 20px;
+}
+
+.sc details summary .name {
+    padding-left: 8px;
+    line-height: 32px;
+}
+
+.sc details summary .hyphen {
+    color: #ccc;
+    line-height: 32px;
+}
+
+.sc details summary .desc {
+    color: #ccc;
+    line-height: 32px;
+}
+
+#popups-container {
+    pointer-events: none;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+}
+
+.popup {
+    background-color: #0008;
+    transform: translateX(0px);
+    opacity: 1;
+    animation: var(--transition-duration) popup-appear;
+    transition: var(--transition-duration) opacity ease-out;
+}
+@keyframes popup-appear {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.popup.hidden {
+    opacity: 0;
+}
+
+.madeby > span {
+    display: grid;
+    grid-template-columns: 105px 258px 1fr;
+    align-items: center;
+    font-family: "Fira Sans", sans-serif;
+}
+
+.madeby > span > .name {
+    background: transparent;
+    color: #999;
+    -ms-flex: none;
+    flex: none;
+    letter-spacing: 0;
+}
+
+.usage {
+    display: grid;
+    grid-template-columns: 60px 258px 1fr;
+    align-items: center;
+}
+
+.usage > div {
+    height: 8px;
+    width: 250px;
+    position: relative;
+    border-radius: 8px;
+    background-color: #444;
+}
+
+.usage > p {
+    background: transparent;
+    color: #999;
+    -ms-flex: none;
+    flex: none;
+    letter-spacing: 0;
+}
+
+.usage > div > p {
+    background: transparent;
+    color: #999;
+    -ms-flex: none;
+    flex: none;
+    letter-spacing: 0;
+}
+
+.usage > div > span {
+    display: block;
+    height: 100%;
+    border-radius: 8px;
+    background-color: #4e4;
+    position: relative;
+    overflow: hidden;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 110px auto 1fr;
+}
+
+.info-grid > h3 {
+    margin-right: 5px;
+}
+
+.uptime {
+    display: grid;
+    grid-template-columns: 68px auto 1fr;
+    font-family: "Fira Sans", sans-serif;
+}
