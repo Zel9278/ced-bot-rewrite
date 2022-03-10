@@ -1,5 +1,5 @@
 const { client, infoLoop } = require("../../..");
-const { toSafeString, interactionReply } = require("../../utils");
+const { toSafeString, interactionReply, errorToFile } = require("../../utils");
 const { codeFrameColumns } = require("@babel/code-frame");
 const { inspect } = require("util");
 const fs = require("fs");
@@ -48,6 +48,7 @@ const js = {
             });
             await interactionReply(interaction, { content: timerData + "\n```javascript\n" + (evaled || "what happen") + "\n```" });
         } catch(e) {
+            errorToFile("js command", e);
             timer = process.hrtime(timer);
             const timerData = `Executed in ${timer[0] > 0 ? `${timer[0]}s ` : ''}${timer[1] / 1000000}ms.`;
             if(!e.stack.split("\n")[1].match(/:[0-9]+/g)) {

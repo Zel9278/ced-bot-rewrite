@@ -1,6 +1,6 @@
 const { Client, BaseCommandInteraction } = require("discord.js");
 const commandLoader = require("./commands");
-const { byteToData, interactionReply } = require("../utils");
+const { byteToData, interactionReply, errorToFile } = require("../utils");
 
 function bot(config) {
     const client = new Client(config.option);
@@ -19,6 +19,7 @@ function bot(config) {
                 const command = commands.find(x => x.data.name == interaction.commandName);
                 await command?.exec?.(interaction);
             } catch (error) {
+                errorToFile("interactionCreate", error);
                 interactionReply(interaction, {
                     embeds: [
                         {
