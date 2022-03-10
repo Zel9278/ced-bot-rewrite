@@ -1,6 +1,6 @@
 const { Client, BaseCommandInteraction } = require("discord.js");
 const commandLoader = require("./commands");
-const { byteToData } = require("../utils");
+const { byteToData, interactionReply } = require("../utils");
 
 function bot(config) {
     const client = new Client(config.option);
@@ -13,10 +13,22 @@ function bot(config) {
         commands.init();
     });
 
-    client.on("interactionCreate", interaction => {
+    client.on("interactionCreate", async interaction => {
         if (interaction instanceof BaseCommandInteraction) {
-            const command = commands.find(x => x.data.name == interaction.commandName);
-            command?.exec?.(interaction);
+            try {
+                const command = commands.find(x => x.data.name == interaction.commandName);
+                await command?.exec?.(interaction);
+            } catch (error) {
+                interactionReply(interaction, {
+                    embeds: [
+                        {
+                            title: `This is an error in the command ${interaction.commandName}`,
+                            description: error.toString(),
+                            color: "ff0000"
+                        }
+                    ]
+                });
+            }
         }
     });
 
