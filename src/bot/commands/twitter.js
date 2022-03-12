@@ -20,7 +20,6 @@ const twitter = {
             }
         ]
     },
-    isGuildCommand: true,
     async exec(interaction) {
         const id = interaction.options.getString("id");
         const params = { screen_name: id };

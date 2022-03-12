@@ -15,7 +15,6 @@ const say = {
         await interaction.reply({
             embeds: [
                 {
-                    title: "Say",
                     description: interaction.options.getString("text")                
                 }
             ]

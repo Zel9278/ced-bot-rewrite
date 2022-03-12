@@ -26,7 +26,7 @@ function web(client, infoLoop, config) {
                 discordjs: discordJS.version,
                 nodejs: process.version.replace(/v/, ""),
                 bot: [config.global.version, config.global.type, config.global.date],
-                os: [`${execSync("cat /etc/issue").toString().replace(/\\n|\\l/g, "")}`, `(${os.platform()} ${os.arch()} ${os.release()})`],
+                os: [`${execSync("cat /etc/issue").toString().replace(/\\n|\\l|\\r|\(|\)/g, "")}`, `(${os.platform()} ${os.arch()} ${os.release()})`],
             },
             updateInfo: config.global.info,
             madeBy: client.users.resolve("474413012120502304")?.tag

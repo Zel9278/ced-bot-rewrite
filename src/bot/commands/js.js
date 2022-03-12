@@ -15,7 +15,7 @@ const js = {
 		permissions: [
 			{
 				id: client.config.admin,
-				type: "USER",
+				type: "ROLE",
 				permission: true
 			}
 		],
