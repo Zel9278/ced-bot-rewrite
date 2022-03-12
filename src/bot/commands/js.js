@@ -12,13 +12,13 @@ const js = {
         name: "js",
         description: "Execute javascript code.",
         defaultPermission: false,
-		permissions: [
-			{
-				id: client.config.admin,
-				type: "ROLE",
-				permission: true
-			}
-		],
+		permissions: client.config.admins.map(id => {
+            return {
+                id: id,
+                type: "USER",
+                permission: true
+            }
+        }),
         options: [
             {
                 name: "code",
