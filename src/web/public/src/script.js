@@ -127,7 +127,7 @@ function Storage(props) {
 function App() {
   const defaultHiState = { versions: { bot: ["", "", ""], discordjs: "", nodejs: "", os: ["", ""] }, updateInfo: "", madeBy: "" };
   const defaultInfoState = { cpu: { model: "", cpus: [], percent: 0 }, ram: { free: 0, total: 0, percent: 0 }, storage: { free: 0, total: 0, percent: 0 }, uptime: { os: 0, bot: 0 }, servers: 0, users: 0, presence: { status: "", activities: "" } };
-  const defaultCommandsState = { global: [], guild: [] };
+  const defaultCommandsState = { global: [{data:{name:"no commands"}}], guild: [{data:{name:"no commands"}}] };
 
   const [ socket, setSocket ] = useState(null);
   const [ hi, setHi ] = useState(defaultHiState);
@@ -157,7 +157,7 @@ function App() {
     </div>
 
     <div className="links">
-      <a href="https://d.cedms.jp">Join My Server.</a>
+      <a href="https://discord.gg/JkuB85n8yb">Join My Server.</a>
       <br/>
       <a href="">Click here to invite a bot.</a>
       <br/>

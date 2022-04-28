@@ -62,12 +62,13 @@ const webshot = {
         const page = await browser.newPage();
 
         await page.setViewport({width, height});
+        await page.deleteCookie();
+        await page.setCookie(...[{ name: "nagAccepted", value: "true", domain: "ourworldofpixels.com" }]);
 
         await interaction.editReply("[2/5]Access Now...");
         await page.goto(url).catch(async e => {
-            await interaction.editReply(`[Failed] ${e.message}`);
             browser.close();
-            errorToFile("webshot", e);
+            throw e;
         });
         
         await interaction.editReply("[3/5]Wait for page...");

@@ -305,6 +305,7 @@ ul > li {
     background-color: #4e4;
     position: relative;
     overflow: hidden;
+    transition: width 0.5s ease-out, background-color 0.5s ease-out;
 }
 
 .info-grid {
