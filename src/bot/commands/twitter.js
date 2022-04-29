@@ -1,11 +1,11 @@
-const Twitter = require("twit");
-const moment = require("moment-timezone");
+const Twitter = require("twit")
+const moment = require("moment-timezone")
 const tc = new Twitter({
-    consumer_key        : process.env.TWITTER_CONSUMER_KEY,
-    consumer_secret     : process.env.TWITTER_CONSUMER_SECRET,
-    access_token        : process.env.TWITTER_ACCESS_TOKEN_KEY,
-    access_token_secret : process.env.TWITTER_ACCESS_TOKEN_SECRET
-});
+    consumer_key: process.env.TWITTER_CONSUMER_KEY,
+    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
+    access_token: process.env.TWITTER_ACCESS_TOKEN_KEY,
+    access_token_secret: process.env.TWITTER_ACCESS_TOKEN_SECRET,
+})
 
 const twitter = {
     data: {
@@ -16,30 +16,39 @@ const twitter = {
                 name: "id",
                 description: "The ID of the user to search for.",
                 type: "STRING",
-                required: true
-            }
-        ]
+                required: true,
+            },
+        ],
     },
     async exec(interaction) {
-        const id = interaction.options.getString("id");
-        const params = { screen_name: id };
+        const id = interaction.options.getString("id")
+        const params = { screen_name: id }
 
         tc.get("users/show", params, async (err, data, response) => {
-            if(err) return await interaction.reply({
-                embeds: [
-                    {
-                        title: `Error`,
-                        description: `StatusCode: ${err.statusCode}\n------------------\n${err.allErrors.map(e => `${e.code}: ${e.message}`).join("\n")}`,
-                        color: "FF0000"
-                    }
-                ]
-            });
+            if (err)
+                return await interaction.reply({
+                    embeds: [
+                        {
+                            title: `Error`,
+                            description: `StatusCode: ${
+                                err.statusCode
+                            }\n------------------\n${err.allErrors
+                                .map((e) => `${e.code}: ${e.message}`)
+                                .join("\n")}`,
+                            color: "FF0000",
+                        },
+                    ],
+                })
 
-            const url = data.url?`${data.url}`:"no data";
-            const description = data.description?`${data.description}`:"no data";
-            const location = data.location?`${data.location}`:"no data";
-            const latestTweet = data.status?data.status.text:"Hidden";
-            const createdAt = moment(new Date(data.created_at)).tz("Asia/Tokyo").format("YYYY/MM/DD-HH:mm");
+            const url = data.url ? `${data.url}` : "no data"
+            const description = data.description
+                ? `${data.description}`
+                : "no data"
+            const location = data.location ? `${data.location}` : "no data"
+            const latestTweet = data.status ? data.status.text : "Hidden"
+            const createdAt = moment(new Date(data.created_at))
+                .tz("Asia/Tokyo")
+                .format("YYYY/MM/DD-HH:mm")
 
             await interaction.reply({
                 embeds: [
@@ -97,13 +106,13 @@ const twitter = {
                                 name: "created(jst)",
                                 value: createdAt,
                                 inline: true,
-                            }
-                        ]
-                    }
-                ]
-            });
-        });
-    }
-};
+                            },
+                        ],
+                    },
+                ],
+            })
+        })
+    },
+}
 
-module.exports = twitter;
+module.exports = twitter

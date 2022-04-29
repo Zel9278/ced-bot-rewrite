@@ -1,4 +1,4 @@
-const { interactionReply } = require("../../utils");
+const { interactionReply } = require("../../utils")
 
 const button = {
     data: {
@@ -13,8 +13,8 @@ const button = {
                     title: "button testing",
                     description: "eoeoeoeoeoeoe",
                     color: 2522551,
-                    timestamp: new Date()
-                }
+                    timestamp: new Date(),
+                },
             ],
             components: [
                 {
@@ -24,13 +24,12 @@ const button = {
                             type: 2,
                             label: "Test",
                             style: 1,
-                            custom_id: "test"
-                        }
-                    ]
-        
-                }
-            ]
-        });
+                            custom_id: "test",
+                        },
+                    ],
+                },
+            ],
+        })
     },
     events: [
         {
@@ -42,12 +41,12 @@ const button = {
                         {
                             title: "button testing",
                             description: `${interaction.user.username}#${interaction.user.discriminator} clicked the button`,
-                        }
-                    ]
-                });
-            }
-        }
-    ]
-};
+                        },
+                    ],
+                })
+            },
+        },
+    ],
+}
 
-module.exports = button;
+module.exports = button

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Mono&family=Rubik:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fira+Mono&family=Rubik:wght@300&display=swap");
 
 * {
     margin: 0px;
@@ -43,7 +43,7 @@ details > summary {
 }
 
 details[open] summary ~ * {
-    animation: sweep .2s ease-out;
+    animation: sweep 0.2s ease-out;
     margin-left: 1em;
 }
 
@@ -65,7 +65,7 @@ details[open] summary ~ * {
 }
 
 .info .version .num {
-    font-family: 'Fira Mono', monospace;
+    font-family: "Fira Mono", monospace;
     background: transparent;
     color: #eee;
     -ms-flex: none;
@@ -245,8 +245,12 @@ ul > li {
     transition: var(--transition-duration) opacity ease-out;
 }
 @keyframes popup-appear {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .popup.hidden {

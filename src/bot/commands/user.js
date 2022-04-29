@@ -1,6 +1,6 @@
-const moment = require("moment-timezone");
-const { unixToDate } = require("../../utils");
-const { client } = require("../../../");
+const moment = require("moment-timezone")
+const { unixToDate } = require("../../utils")
+const { client } = require("../../../")
 
 const user = {
     data: {
@@ -10,25 +10,39 @@ const user = {
             {
                 name: "user",
                 description: "The user to display information about.",
-                type: "USER"
-            }
-        ]
+                type: "USER",
+            },
+        ],
     },
     async exec(interaction) {
-        const user = interaction.options.getUser("user") || interaction.user;
-        const member = client.guilds.resolve(interaction.guild.id).members.resolve(user.id);
-        const cluser = await client.users.fetch(user.id, {force: true});
-        const createdAt = moment(member.user.createdAt).tz("Asia/Tokyo").format("YYYY/MM/DD-HH:mm");
-        const joinedAt = moment(member.joinedAt).tz("Asia/Tokyo").format("YYYY/MM/DD-HH:mm");
-        const premiumSince = (member.premiumSince)?moment(member.premiumSince).tz("Asia/Tokyo").format("YYYY/MM/DD-HH:mm"):"none";
-        const avatar = (member.user.avatar) ? member.user.avatarURL({dynamic: true}) : member.user.defaultAvatarURL;
-        const banner = (cluser.banner) ? cluser.bannerURL({dynamic: true}) : null;
-        const presence = member.presence;
+        const user = interaction.options.getUser("user") || interaction.user
+        const member = client.guilds
+            .resolve(interaction.guild.id)
+            .members.resolve(user.id)
+        const cluser = await client.users.fetch(user.id, { force: true })
+        const createdAt = moment(member.user.createdAt)
+            .tz("Asia/Tokyo")
+            .format("YYYY/MM/DD-HH:mm")
+        const joinedAt = moment(member.joinedAt)
+            .tz("Asia/Tokyo")
+            .format("YYYY/MM/DD-HH:mm")
+        const premiumSince = member.premiumSince
+            ? moment(member.premiumSince)
+                  .tz("Asia/Tokyo")
+                  .format("YYYY/MM/DD-HH:mm")
+            : "none"
+        const avatar = member.user.avatar
+            ? member.user.avatarURL({ dynamic: true })
+            : member.user.defaultAvatarURL
+        const banner = cluser.banner
+            ? cluser.bannerURL({ dynamic: true })
+            : null
+        const presence = member.presence
 
         await interaction.reply({
             embeds: [
                 {
-                    color: member.displayHexColor.replace( /#/g , "" ),
+                    color: member.displayHexColor.replace(/#/g, ""),
                     thumbnail: {
                         url: avatar,
                     },
@@ -39,7 +53,11 @@ const user = {
                     fields: [
                         {
                             name: "Tag(Nickname)",
-                            value: member.user.tag + "(" + member.displayName + ")",
+                            value:
+                                member.user.tag +
+                                "(" +
+                                member.displayName +
+                                ")",
                         },
                         {
                             name: "ID",
@@ -47,58 +65,77 @@ const user = {
                         },
                         {
                             name: "Status",
-                            value: presence?.status ? presence.status : "offline",
+                            value: presence?.status
+                                ? presence.status
+                                : "offline",
                         },
                         {
                             name: "Activities",
-                            value: (presence && presence?.activities.length > 0) ? presence.activities.map(activities).join("\n") : "Not Playing"
+                            value:
+                                presence && presence?.activities.length > 0
+                                    ? presence.activities
+                                          .map(activities)
+                                          .join("\n")
+                                    : "Not Playing",
                         },
                         {
                             name: "Created",
                             value: createdAt,
-                            inline: true
+                            inline: true,
                         },
                         {
                             name: "Joined",
                             value: joinedAt,
-                            inline: true
+                            inline: true,
                         },
                         {
                             name: "Boosted",
                             value: premiumSince,
-                            inline: true
+                            inline: true,
                         },
                         {
                             name: "Roles",
-                            value: `${member.roles.cache.map(r => r)[0]} and other ${member.roles.cache.size} roles`,
+                            value: `${
+                                member.roles.cache.map((r) => r)[0]
+                            } and other ${member.roles.cache.size} roles`,
                         },
                     ],
-                }
-            ]
-        });
-    }
-};
+                },
+            ],
+        })
+    },
+}
 
-module.exports = user;
+module.exports = user
 
 function activities(a) {
-    var playTime = "";
-    var details = "";
-    var state = "";
-    if(a.type === "CUSTOM_STATUS") {
-        a.details = a.state;
-        a.state = null;
+    var playTime = ""
+    var details = ""
+    var state = ""
+    if (a.type === "CUSTOM_STATUS") {
+        a.details = a.state
+        a.state = null
     } else {
-        a.details;
+        a.details
     }
 
-    if(a.details) details = " | " + a.details;
-    if(a.state) state =  " | " + a.state;
+    if (a.details) details = " | " + a.details
+    if (a.state) state = " | " + a.state
 
-    if(a.timestamps) {
-        if(a.timestamps.start) playTime = " - " + unixToDate(new Date() - a.timestamps.start, {isSymbol: true}) + " elapsed";
-        if(a.timestamps.end) playTime = " - " + unixToDate(a.timestamps.end - new Date(), {isSymbol: true}) + "  left";
+    if (a.timestamps) {
+        if (a.timestamps.start)
+            playTime =
+                " - " +
+                unixToDate(new Date() - a.timestamps.start, {
+                    isSymbol: true,
+                }) +
+                " elapsed"
+        if (a.timestamps.end)
+            playTime =
+                " - " +
+                unixToDate(a.timestamps.end - new Date(), { isSymbol: true }) +
+                "  left"
     }
 
-    return `[${a.type}${playTime}] ${a.name}${details}${state}`;
+    return `[${a.type}${playTime}] ${a.name}${details}${state}`
 }

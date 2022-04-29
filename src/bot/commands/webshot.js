@@ -1,17 +1,17 @@
-const puppeteer = require("puppeteer");
-const { client } = require("../../../");
-const { errorToFile } = require("../../utils");
+const puppeteer = require("puppeteer")
+const { client } = require("../../../")
+const { errorToFile } = require("../../utils")
 
 const webshot = {
     data: {
         name: "webshot",
         description: "Take a screenshot of a website.",
         defaultPermission: false,
-		permissions: client.config.admins.map(id => {
+        permissions: client.config.admins.map((id) => {
             return {
                 id: id,
                 type: "USER",
-                permission: true
+                permission: true,
             }
         }),
         options: [
@@ -19,74 +19,90 @@ const webshot = {
                 name: "url",
                 description: "Type the url you want to screenshot.",
                 type: "STRING",
-                required: true
+                required: true,
             },
             {
                 name: "width",
                 description: "Type the width of the screenshot.",
-                type: "NUMBER"
+                type: "NUMBER",
             },
             {
                 name: "height",
                 description: "Type the height of the screenshot.",
-                type: "NUMBER"
+                type: "NUMBER",
             },
             {
                 name: "fullpage",
                 description: "Take a full page screenshot.",
-                type: "BOOLEAN"
+                type: "BOOLEAN",
             },
             {
                 name: "delay",
                 description: "Type the delay in milliseconds.",
-                type: "NUMBER"
-            }
-        ]
+                type: "NUMBER",
+            },
+        ],
     },
     async exec(interaction) {
-        const url = interaction.options.getString("url");
-        const width = interaction.options.getNumber("width") || 1280;
-        const height = interaction.options.getNumber("height") || 720;
-        const fullPage = interaction.options.getBoolean("fullpage") || false;
-        const delay = interaction.options.getNumber("delay") || 0;
+        const url = interaction.options.getString("url")
+        const width = interaction.options.getNumber("width") || 1280
+        const height = interaction.options.getNumber("height") || 720
+        const fullPage = interaction.options.getBoolean("fullpage") || false
+        const delay = interaction.options.getNumber("delay") || 0
 
-        await interaction.reply("[Startup]Please Wait...");
+        await interaction.reply("[Startup]Please Wait...")
 
         const browser = await puppeteer.launch({
             args: ["--no-sandbox", "--disable-setuid-sandbox"],
             ignoreDefaultArgs: ["--mute-audio", "--hide-scrollbars"],
-            headless: true
-        });
+            headless: true,
+        })
 
-        await interaction.editReply("[1/5]launch OK");
-        const page = await browser.newPage();
+        await interaction.editReply("[1/5]launch OK")
+        const page = await browser.newPage()
 
-        await page.setViewport({width, height});
-        await page.deleteCookie();
-        await page.setCookie(...[{ name: "nagAccepted", value: "true", domain: "ourworldofpixels.com" }]);
+        await page.setViewport({ width, height })
+        await page.deleteCookie()
+        await page.setCookie(
+            ...[
+                {
+                    name: "nagAccepted",
+                    value: "true",
+                    domain: "ourworldofpixels.com",
+                },
+            ]
+        )
 
-        await interaction.editReply("[2/5]Access Now...");
-        await page.goto(url).catch(async e => {
-            browser.close();
-            throw e;
-        });
-        
-        await interaction.editReply("[3/5]Wait for page...");
+        await interaction.editReply("[2/5]Access Now...")
+        await page.goto(url).catch(async (e) => {
+            browser.close()
+            throw e
+        })
+
+        await interaction.editReply("[3/5]Wait for page...")
 
         setTimeout(async () => {
-            const bufferimage = await page.screenshot({ fullPage, encoding: "binary" });
-            await interaction.editReply("[4/5]Screenshot OK");
+            const bufferimage = await page.screenshot({
+                fullPage,
+                encoding: "binary",
+            })
+            await interaction.editReply("[4/5]Screenshot OK")
 
-            await browser.close();
-            await interaction.editReply("[5/5]Complete!");
+            await browser.close()
+            await interaction.editReply("[5/5]Complete!")
 
             await interaction.editReply({
                 files: [{ attachment: bufferimage, name: "web.png" }],
-                embeds: [{ title: "web.png", image: { url: "attachment://web.png" }}] 
-            });
-        }, delay);
+                embeds: [
+                    {
+                        title: "web.png",
+                        image: { url: "attachment://web.png" },
+                    },
+                ],
+            })
+        }, delay)
     },
-    isGuildCommand: true
-};
+    isGuildCommand: true,
+}
 
-module.exports = webshot;
+module.exports = webshot

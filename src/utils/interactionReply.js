@@ -1,11 +1,11 @@
 async function interactionReply(interaction, data) {
     if (interaction.replied) {
-        interaction.editReply(data);
+        interaction.editReply(data)
     } else if (interaction.deferred) {
-        return interaction.channel.send(data);
+        return interaction.channel.send(data)
     } else {
-        interaction.reply(data);
+        interaction.reply(data)
     }
 }
 
-module.exports = interactionReply;
+module.exports = interactionReply
