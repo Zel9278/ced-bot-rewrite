@@ -28,6 +28,17 @@ const button = {
                         },
                     ],
                 },
+                {
+                    type: 1,
+                    components: [
+                        {
+                            type: 2,
+                            label: "Don't click me",
+                            style: 4,
+                            custom_id: "dont_click_me",
+                        },
+                    ],
+                },
             ],
         })
     },
@@ -41,6 +52,20 @@ const button = {
                         {
                             title: "button testing",
                             description: `${interaction.user.username}#${interaction.user.discriminator} clicked the button`,
+                        },
+                    ],
+                })
+            },
+        },
+        {
+            id: "dont_click_me",
+            type: 2,
+            async exec(interaction) {
+                interactionReply(interaction, {
+                    embeds: [
+                        {
+                            title: "why did you click me?",
+                            description: `${interaction.user.username}#${interaction.user.discriminator} tried to click the button\nboom:boom:`,
                         },
                     ],
                 })
