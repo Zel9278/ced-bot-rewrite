@@ -2,7 +2,7 @@
     "name": "ced-bot-rewrite",
     "description": "rewriting ced-bot",
     "version": "0.1",
-    "packageManager": "pnpm@6.32.11",
+    "packageManager": "pnpm@7.0.0",
     "dependencies": {
         "@babel/code-frame": "^7.16.7",
         "cpu-stats": "^1.0.0",
