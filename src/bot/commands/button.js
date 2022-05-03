@@ -24,7 +24,7 @@ const button = {
                             type: 2,
                             label: "Test",
                             style: 1,
-                            custom_id: "test",
+                            custom_id: "button:button:test",
                         },
                     ],
                 },
@@ -35,7 +35,7 @@ const button = {
                             type: 2,
                             label: "Don't click me",
                             style: 4,
-                            custom_id: "dont_click_me",
+                            custom_id: "button:button:dont_click_me",
                         },
                     ],
                 },
@@ -44,7 +44,7 @@ const button = {
     },
     events: [
         {
-            id: "test",
+            id: "button:button:test",
             type: 2,
             async exec(interaction) {
                 interactionReply(interaction, {
@@ -58,14 +58,14 @@ const button = {
             },
         },
         {
-            id: "dont_click_me",
+            id: "button:button:dont_click_me",
             type: 2,
             async exec(interaction) {
                 interactionReply(interaction, {
                     embeds: [
                         {
-                            title: "why did you click me?",
-                            description: `${interaction.user.username}#${interaction.user.discriminator} tried to click the button\nboom:boom:`,
+                            title: "Attention!",
+                            description: `${interaction.user.username}#${interaction.user.discriminator} tried to click the button\nΈχετε πατήσει αυτό το κουμπί και η έκρηξη θα παιχτεί μια μέρα.\nSuch is the curse.:bomb:`,
                         },
                     ],
                 })
