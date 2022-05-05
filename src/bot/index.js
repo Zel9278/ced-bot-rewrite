@@ -1,4 +1,4 @@
-const { Client, BaseCommandInteraction } = require("discord.js")
+const { Client } = require("discord.js")
 const commandLoader = require("./commands")
 const eventLoader = require("./events")
 
