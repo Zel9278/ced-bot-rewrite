@@ -61,14 +61,28 @@ const button = {
             id: "button:button:dont_click_me",
             type: 2,
             async exec(interaction) {
+                const timeout =
+                    Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000
                 interactionReply(interaction, {
                     embeds: [
                         {
-                            title: "Attention!",
+                            title: `Attention! You explode in ${
+                                timeout / 1000
+                            } seconds!`,
                             description: `${interaction.user.username}#${interaction.user.discriminator} tried to click the button\nΈχετε πατήσει αυτό το κουμπί και η έκρηξη θα παιχτεί μια μέρα.\nSuch is the curse.:bomb:`,
                         },
                     ],
                 })
+                setTimeout(async () => {
+                    interaction.channel.send({
+                        embeds: [
+                            {
+                                title: "oof!",
+                                description: `${interaction.user.username}#${interaction.user.discriminator} exploded.\n:boom:`,
+                            },
+                        ],
+                    })
+                }, timeout)
             },
         },
     ],
