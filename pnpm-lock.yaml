@@ -2,6 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@babel/code-frame': ^7.16.7
+  '@discordjs/voice': ^0.9.0
   cpu-stats: ^1.0.0
   discord.js: ^13.6.0
   diskusage: ^1.1.3
@@ -15,6 +16,7 @@ specifiers:
 
 dependencies:
   '@babel/code-frame': 7.16.7
+  '@discordjs/voice': 0.9.0
   cpu-stats: 1.0.0
   discord.js: 13.6.0
   diskusage: 1.1.3
@@ -65,6 +67,25 @@ packages:
   /@discordjs/collection/0.4.0:
     resolution: {integrity: sha512-zmjq+l/rV35kE6zRrwe8BHqV78JvIh2ybJeZavBi5NySjWXqN3hmmAKg7kYMMXSeiWtSsMoZ/+MQi0DiQWy2lw==}
     engines: {node: '>=16.0.0', npm: '>=7.0.0'}
+    dev: false
+
+  /@discordjs/voice/0.9.0:
+    resolution: {integrity: sha512-fSAYtPCEfIyG56hC2cRJuyfvQGr+aawSssLCqYg70vZ51dKO4spEKOB8V6vNMP5HnEplbhmxkB3YbshFKtnCQQ==}
+    engines: {node: '>=16.9.0'}
+    dependencies:
+      '@types/ws': 8.5.3
+      discord-api-types: 0.29.0
+      prism-media: 1.3.2
+      tiny-typed-emitter: 2.1.0
+      tslib: 2.4.0
+      ws: 8.6.0
+    transitivePeerDependencies:
+      - '@discordjs/opus'
+      - bufferutil
+      - ffmpeg-static
+      - node-opus
+      - opusscript
+      - utf-8-validate
     dev: false
 
   /@sapphire/async-queue/1.3.1:
@@ -392,6 +413,10 @@ packages:
   /discord-api-types/0.26.1:
     resolution: {integrity: sha512-T5PdMQ+Y1MEECYMV5wmyi9VEYPagEDEi4S0amgsszpWY0VB9JJ/hEvM6BgLhbdnKky4gfmZEXtEEtojN8ZKJQQ==}
     engines: {node: '>=12'}
+    dev: false
+
+  /discord-api-types/0.29.0:
+    resolution: {integrity: sha512-Ekq1ICNpOTVajXKZguNFrsDeTmam+ZeA38txsNLZnANdXUjU6QBPIZLUQTC6MzigFGb0Tt8vk4xLnXmzv0shNg==}
     dev: false
 
   /discord.js/13.6.0:
@@ -974,6 +999,24 @@ packages:
     hasBin: true
     dev: true
 
+  /prism-media/1.3.2:
+    resolution: {integrity: sha512-L6UsGHcT6i4wrQhFF1aPK+MNYgjRqR2tUoIqEY+CG1NqVkMjPRKzS37j9f8GiYPlD6wG9ruBj+q5Ax+bH8Ik1g==}
+    peerDependencies:
+      '@discordjs/opus': ^0.5.0
+      ffmpeg-static: ^4.2.7 || ^3.0.0 || ^2.4.0
+      node-opus: ^0.3.3
+      opusscript: ^0.0.8
+    peerDependenciesMeta:
+      '@discordjs/opus':
+        optional: true
+      ffmpeg-static:
+        optional: true
+      node-opus:
+        optional: true
+      opusscript:
+        optional: true
+    dev: false
+
   /progress/2.0.3:
     resolution: {integrity: sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==}
     engines: {node: '>=0.4.0'}
@@ -1237,6 +1280,10 @@ packages:
 
   /through/2.3.8:
     resolution: {integrity: sha1-DdTJ/6q8NXlgsbckEV1+Doai4fU=}
+    dev: false
+
+  /tiny-typed-emitter/2.1.0:
+    resolution: {integrity: sha512-qVtvMxeXbVej0cQWKqVSSAHmKZEHAvxdF8HEUBFWts8h+xEo5m/lEiPakuyZ3BnCBjOD8i24kzNOiOLLgsSxhA==}
     dev: false
 
   /toidentifier/1.0.1:
