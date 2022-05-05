@@ -24,7 +24,7 @@ function web(client, infoLoop, config) {
     infoLoop.on("commandInitialize", (data) => io.emit("commands", data))
 
     io.on("connection", (c) => {
-        c.emit("commands", client.rawCommands)
+        c.emit("commands", client._rawCommands)
         c.emit("hi", {
             versions: {
                 discordjs: discordJS.version,
