@@ -1,7 +1,6 @@
 const moment = require("moment-timezone")
 const { unixToDate } = require("../../utils")
 const { client } = require("../../../")
-const e = require("express")
 
 const user = {
     data: {
