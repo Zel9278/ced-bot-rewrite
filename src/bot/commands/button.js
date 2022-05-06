@@ -11,7 +11,7 @@ const button = {
             embeds: [
                 {
                     title: "button testing",
-                    description: "eoeoeoeoeoeoe",
+                    description: "eo".repeat(Math.floor(Math.random() * 100)),
                     color: 2522551,
                     timestamp: new Date(),
                 },

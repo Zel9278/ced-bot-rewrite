@@ -1,4 +1,5 @@
 const { client } = require("../../..")
+const { errorToFile, interactionReply } = require("../../utils")
 
 const interactionCreate = {
     name: "interactionCreate",
@@ -14,7 +15,7 @@ const interactionCreate = {
                 interactionReply(interaction, {
                     embeds: [
                         {
-                            title: `This is an error in the command ${interaction.commandName}`,
+                            title: `This is an error in the command "${interaction.commandName}"`,
                             description: error.toString(),
                             color: "ff0000",
                         },
