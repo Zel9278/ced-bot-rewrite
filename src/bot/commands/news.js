@@ -7,7 +7,6 @@ const news = {
         name: "news",
         description: "Randomly displays news from Japan.",
     },
-    isGuildCommand: true,
     async exec(interaction) {
         newsapi.v2
             .topHeadlines({
