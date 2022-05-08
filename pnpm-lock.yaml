@@ -1,4 +1,4 @@
-lockfileVersion: 5.3
+lockfileVersion: 5.4
 
 specifiers:
   '@babel/code-frame': ^7.16.7
@@ -9,6 +9,7 @@ specifiers:
   dotenv: ^10.0.0
   express: ^4.18.1
   moment-timezone: ^0.5.34
+  newsapi: ^2.4.1
   prettier: ^2.6.2
   puppeteer: ^13.7.0
   socket.io: ^4.5.0
@@ -23,6 +24,7 @@ dependencies:
   dotenv: 10.0.0
   express: 4.18.1
   moment-timezone: 0.5.34
+  newsapi: 2.4.1
   puppeteer: 13.7.0
   socket.io: 4.5.0
   twit: 2.2.11
@@ -340,6 +342,11 @@ packages:
   /cookie/0.5.0:
     resolution: {integrity: sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==}
     engines: {node: '>= 0.6'}
+    dev: false
+
+  /core-js/3.22.4:
+    resolution: {integrity: sha512-1uLykR+iOfYja+6Jn/57743gc9n73EWiOnSJJ4ba3B4fOEYDBv25MagmEZBxTp5cWq4b/KPx/l77zgsp28ju4w==}
+    requiresBuild: true
     dev: false
 
   /core-util-is/1.0.2:
@@ -900,6 +907,15 @@ packages:
   /negotiator/0.6.3:
     resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}
     engines: {node: '>= 0.6'}
+    dev: false
+
+  /newsapi/2.4.1:
+    resolution: {integrity: sha512-yw/aZBgDwNbNMqQ1V7XFKdW2jvL8Fh4qMiU0Awin87Rt6lbPnS8OuiLaL15Ws5X82/EXhzNf/djAlPHOWVgMJg==}
+    dependencies:
+      core-js: 3.22.4
+      node-fetch: 2.6.7
+    transitivePeerDependencies:
+      - encoding
     dev: false
 
   /node-fetch/2.6.7:
