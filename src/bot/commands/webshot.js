@@ -1,19 +1,10 @@
-const puppeteer = require("puppeteer")
 const { client } = require("../../../")
-const { errorToFile } = require("../../utils")
+const puppeteer = require("puppeteer")
 
 const webshot = {
     data: {
         name: "webshot",
         description: "Take a screenshot of a website.",
-        defaultPermission: false,
-        permissions: client.config.admins.map((id) => {
-            return {
-                id: id,
-                type: "USER",
-                permission: true,
-            }
-        }),
         options: [
             {
                 name: "url",
@@ -44,6 +35,12 @@ const webshot = {
         ],
     },
     async exec(interaction) {
+        if (!client.config.admins.includes(interaction.user.id)) {
+            return interaction.reply(
+                "You have no permission to use this command."
+            )
+        }
+
         const url = interaction.options.getString("url")
         const width = interaction.options.getNumber("width") || 1280
         const height = interaction.options.getNumber("height") || 720

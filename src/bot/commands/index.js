@@ -57,21 +57,6 @@ const commandLoader = (client) => {
                     if (client.config.debug)
                         console.log(`Loaded ${guild.name}'s commands.`)
                 })
-
-            await guild.commands.permissions.set({
-                fullPermissions: commands.guild
-                    .filter((local_command) => local_command.data.permissions)
-                    .map((local_command) => {
-                        const discord_command = guild.commands.cache.find(
-                            (command) =>
-                                local_command.data.name === command.name
-                        )
-                        return {
-                            id: discord_command.id,
-                            permissions: local_command.data.permissions || [],
-                        }
-                    }),
-            })
         })
 
         loaded.push(...Object.values(commands).flat())

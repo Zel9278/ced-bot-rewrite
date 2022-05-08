@@ -17,14 +17,6 @@ const js = {
     data: {
         name: "js",
         description: "Execute javascript code.",
-        defaultPermission: false,
-        permissions: client.config.admins.map((id) => {
-            return {
-                id: id,
-                type: "USER",
-                permission: true,
-            }
-        }),
         options: [
             {
                 name: "code",
@@ -35,6 +27,12 @@ const js = {
         ],
     },
     async exec(interaction) {
+        if (!client.config.admins.includes(interaction.user.id)) {
+            return interaction.reply(
+                "You have no permission to use this command."
+            )
+        }
+
         const code = interaction.options.getString("code")
 
         let timer = process.hrtime()
