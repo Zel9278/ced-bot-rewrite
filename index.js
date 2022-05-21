@@ -8,6 +8,8 @@ const web = require("./src/web")
 const config = require("./configs")
 config.global.date = require("moment-timezone")().format("YYYY/MM/DD HH:mm")
 
+global.fs = require("fs")
+
 const client = bot(config.bot)
 const infoLoop = info(client)
 web(client, infoLoop, config)

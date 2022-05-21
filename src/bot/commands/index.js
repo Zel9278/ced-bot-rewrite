@@ -3,6 +3,10 @@ const path = require("path")
 const { errorToFile } = require("../../utils")
 
 const commandLoader = (client) => {
+    global.cmdFiles = fs
+    .readdirSync("./src/bot/commands")
+    .filter((file) => file.endsWith(".js"))
+
     const ignore = ["index.js"]
 
     let commands = {
