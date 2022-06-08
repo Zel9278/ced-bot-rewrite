@@ -25,7 +25,7 @@ const info = {
                 {
                     title: `Version ${config.global.version} ${config.global.type} ${config.global.date}`,
                     description: config.global.info,
-                    url: "https://cedbot.eox2.com/",
+                    url: "https://beta-cedbot.csys64.com/",
                     color: 2522551,
                     fields: [
                         {
