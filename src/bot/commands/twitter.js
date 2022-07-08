@@ -53,7 +53,9 @@ const twitter = {
             await interaction.reply({
                 embeds: [
                     {
-                        title: `${data.name}(@${data.screen_name})`,
+                        title: `${data.name}(@${data.screen_name}) ${
+                            data.protected ? "🔒" : ""
+                        }`,
                         url: `https://twitter.com/${data.screen_name}`,
                         description: description,
                         thumbnail: {
