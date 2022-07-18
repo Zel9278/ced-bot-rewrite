@@ -9,28 +9,28 @@ const webshot = {
             {
                 name: "url",
                 description: "Type the url you want to screenshot.",
-                type: "STRING",
+                type: 3,
                 required: true,
             },
             {
                 name: "width",
                 description: "Type the width of the screenshot.",
-                type: "NUMBER",
+                type: 10,
             },
             {
                 name: "height",
                 description: "Type the height of the screenshot.",
-                type: "NUMBER",
+                type: 10,
             },
             {
                 name: "fullpage",
                 description: "Take a full page screenshot.",
-                type: "BOOLEAN",
+                type: 5,
             },
             {
                 name: "delay",
                 description: "Type the delay in milliseconds.",
-                type: "NUMBER",
+                type: 10,
             },
         ],
     },

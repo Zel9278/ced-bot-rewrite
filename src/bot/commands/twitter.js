@@ -15,7 +15,7 @@ const twitter = {
             {
                 name: "id",
                 description: "The ID of the user to search for.",
-                type: "STRING",
+                type: 3,
                 required: true,
             },
         ],
@@ -35,7 +35,7 @@ const twitter = {
                             }\n------------------\n${err.allErrors
                                 .map((e) => `${e.code}: ${e.message}`)
                                 .join("\n")}`,
-                            color: "FF0000",
+                            color: 0xff0000,
                         },
                     ],
                 })

@@ -7,13 +7,13 @@ const diceroll = {
             {
                 name: "num1",
                 description: "The number of dice to roll.",
-                type: "NUMBER",
+                type: 10,
                 required: true,
             },
             {
                 name: "num2",
                 description: "The number of sides on the dice.",
-                type: "NUMBER",
+                type: 10,
                 required: true,
             },
         ],

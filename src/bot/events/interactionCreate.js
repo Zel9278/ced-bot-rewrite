@@ -4,7 +4,7 @@ const { errorToFile, interactionReply } = require("../../utils")
 const interactionCreate = {
     name: "interactionCreate",
     async exec(interaction) {
-        if (interaction.isCommand()) {
+        if (interaction.isChatInputCommand()) {
             try {
                 const command = client.customCommands.find(
                     (x) => x.data.name == interaction.commandName

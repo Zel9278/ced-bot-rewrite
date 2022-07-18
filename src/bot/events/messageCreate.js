@@ -5,7 +5,7 @@ const messageCreate = {
     name: "messageCreate",
     async exec(message) {
         if (message.author.bot) return
-        if (!["DEFAULT", "REPLY"].some((ct) => ct === message.type)) return
+        if (![0, 19].includes(message.type)) return
 
         if (message.content.match(/https:\/\/discord.com\/channels\//)) {
             const base = message.content

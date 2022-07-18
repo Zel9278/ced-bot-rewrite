@@ -21,7 +21,7 @@ const js = {
             {
                 name: "code",
                 description: "Type the code you want to execute.",
-                type: "STRING",
+                type: 3,
                 required: true,
             },
         ],
@@ -72,7 +72,7 @@ const js = {
                         {
                             title: "Error",
                             description: toSafeString(env, e.toString()),
-                            color: "ff0000",
+                            color: 0xff0000,
                             footer: {
                                 text: timerData,
                             },
@@ -101,7 +101,7 @@ const js = {
                     {
                         title: "Error",
                         description: toSafeString(env, isLine),
-                        color: "ff0000",
+                        color: 0xff0000,
                         footer: {
                             text: timerData,
                         },

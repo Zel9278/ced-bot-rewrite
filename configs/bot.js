@@ -1,8 +1,8 @@
-const { Intents } = require("discord.js")
+const { GatewayIntentBits } = require("discord.js")
 
 const config = {
     option: {
-        intents: Object.values(Intents.FLAGS),
+        intents: Object.values(GatewayIntentBits),
     },
     guilds: [
         "672956423545815040",

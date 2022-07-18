@@ -10,7 +10,7 @@ const user = {
             {
                 name: "user",
                 description: "The user to display information about.",
-                type: "USER",
+                type: 6,
             },
         ],
     },
@@ -42,7 +42,10 @@ const user = {
         await interaction.reply({
             embeds: [
                 {
-                    color: member.displayHexColor.replace(/#/g, ""),
+                    color: parseInt(
+                        member.displayHexColor.replace(/#/g, "").toLowerCase(),
+                        16
+                    ),
                     thumbnail: {
                         url: avatar,
                     },

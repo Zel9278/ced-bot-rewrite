@@ -7,7 +7,7 @@ const say = {
             {
                 name: "text",
                 description: "The text to be returned.",
-                type: "STRING",
+                type: 3,
                 required: true,
             },
         ],
