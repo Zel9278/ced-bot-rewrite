@@ -1,5 +1,6 @@
 const { client } = require("../../../")
 const puppeteer = require("puppeteer")
+const { ApplicationCommandOptionType } = require("discord-api-types/v10")
 
 const webshot = {
     data: {
@@ -9,28 +10,28 @@ const webshot = {
             {
                 name: "url",
                 description: "Type the url you want to screenshot.",
-                type: 3,
+                type: ApplicationCommandOptionType.String,
                 required: true,
             },
             {
                 name: "width",
                 description: "Type the width of the screenshot.",
-                type: 10,
+                type: ApplicationCommandOptionType.Number,
             },
             {
                 name: "height",
                 description: "Type the height of the screenshot.",
-                type: 10,
+                type: ApplicationCommandOptionType.Number,
             },
             {
                 name: "fullpage",
                 description: "Take a full page screenshot.",
-                type: 5,
+                type: ApplicationCommandOptionType.Boolean,
             },
             {
                 name: "delay",
                 description: "Type the delay in milliseconds.",
-                type: 10,
+                type: ApplicationCommandOptionType.Number,
             },
         ],
     },

@@ -1,11 +1,13 @@
 const { client } = require("../../..")
 const { byteToData } = require("../..//utils")
+const { MessageType } = require("discord-api-types/v10")
 
 const messageCreate = {
     name: "messageCreate",
     async exec(message) {
         if (message.author.bot) return
-        if (![0, 19].includes(message.type)) return
+        if (![MessageType.Default, MessageType.Reply].includes(message.type))
+            return
 
         if (message.content.match(/https:\/\/discord.com\/channels\//)) {
             const base = message.content

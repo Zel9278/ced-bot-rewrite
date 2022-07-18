@@ -1,6 +1,10 @@
 const moment = require("moment-timezone")
 const { unixToDate } = require("../../utils")
 const { client } = require("../../../")
+const {
+    ApplicationCommandOptionType,
+    ActivityType,
+} = require("discord-api-types/v10")
 
 const user = {
     data: {
@@ -10,7 +14,7 @@ const user = {
             {
                 name: "user",
                 description: "The user to display information about.",
-                type: 6,
+                type: ApplicationCommandOptionType.User,
             },
         ],
     },
@@ -115,7 +119,7 @@ function activities(a) {
     var playTime = ""
     var details = ""
     var state = ""
-    if (a.type === "CUSTOM_STATUS") {
+    if (ActivityType[a.type] === "Custom") {
         a.details = a.state
         a.state = null
     } else {
@@ -140,5 +144,5 @@ function activities(a) {
                 "  left"
     }
 
-    return `[${a.type}${playTime}] ${a.name}${details}${state}`
+    return `[${ActivityType[a.type]}${playTime}] ${a.name}${details}${state}`
 }

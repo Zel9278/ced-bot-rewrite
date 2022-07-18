@@ -1,3 +1,5 @@
+const { ApplicationCommandOptionType } = require("discord-api-types/v10")
+
 const say = {
     data: {
         name: "say",
@@ -7,7 +9,7 @@ const say = {
             {
                 name: "text",
                 description: "The text to be returned.",
-                type: 3,
+                type: ApplicationCommandOptionType.String,
                 required: true,
             },
         ],

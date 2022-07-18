@@ -1,3 +1,5 @@
+const { ApplicationCommandOptionType } = require("discord-api-types/v10")
+
 const Twitter = require("twit")
 const moment = require("moment-timezone")
 const tc = new Twitter({
@@ -15,7 +17,7 @@ const twitter = {
             {
                 name: "id",
                 description: "The ID of the user to search for.",
-                type: 3,
+                type: ApplicationCommandOptionType.String,
                 required: true,
             },
         ],

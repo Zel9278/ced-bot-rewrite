@@ -1,6 +1,7 @@
 const { client, infoLoop, config } = require("../../../")
 const { unixToDate, byteToData, progressBar } = require("../../utils")
 const os = require("os")
+const Discord = require("discord.js")
 
 const info = {
     data: {
@@ -28,6 +29,10 @@ const info = {
                     url: "https://beta-cedbot.csys64.com/",
                     color: 2522551,
                     fields: [
+                        {
+                            name: "Versions",
+                            value: `Node: ${process.version}\nDiscord: ${Discord.version}`,
+                        },
                         {
                             name: "OS",
                             value: `${os.release()} ${os.platform()} ${os.arch()} ${os.version()}\n${

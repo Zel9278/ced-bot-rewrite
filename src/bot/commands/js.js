@@ -3,6 +3,8 @@ const { toSafeString, interactionReply, errorToFile } = require("../../utils")
 const { codeFrameColumns } = require("@babel/code-frame")
 const { inspect } = require("util")
 const fs = require("fs")
+const { ApplicationCommandOptionType } = require("discord-api-types/v10")
+const axios = require("axios")
 
 const parseEnv = (env_string) =>
     Object.fromEntries(
@@ -21,8 +23,14 @@ const js = {
             {
                 name: "code",
                 description: "Type the code you want to execute.",
-                type: 3,
-                required: true,
+                type: ApplicationCommandOptionType.String,
+                required: false,
+            },
+            {
+                name: "file",
+                description: "Type the file you want to execute.",
+                type: ApplicationCommandOptionType.Attachment,
+                required: false,
             },
         ],
     },
@@ -33,7 +41,16 @@ const js = {
             )
         }
 
-        const code = interaction.options.getString("code")
+        const file = interaction.options.getAttachment("file")
+        if (file && !file.name.endsWith(".js"))
+            return interaction.reply("Invalid file, must be .js.")
+        const fileCode = file
+            ? await axios.get(file.url, { responseType: "arraybuffer" })
+            : ""
+
+        const code =
+            interaction.options.getString("code") ||
+            fileCode?.data?.toString("utf8")
 
         let timer = process.hrtime()
         try {

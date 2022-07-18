@@ -1,3 +1,5 @@
+const { ApplicationCommandOptionType } = require("discord-api-types/v10")
+
 const diceroll = {
     data: {
         name: "diceroll",
@@ -7,13 +9,13 @@ const diceroll = {
             {
                 name: "num1",
                 description: "The number of dice to roll.",
-                type: 10,
+                type: ApplicationCommandOptionType.Number,
                 required: true,
             },
             {
                 name: "num2",
                 description: "The number of sides on the dice.",
-                type: 10,
+                type: ApplicationCommandOptionType.Number,
                 required: true,
             },
         ],
