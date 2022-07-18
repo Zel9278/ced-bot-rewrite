@@ -2,7 +2,7 @@ const { GatewayIntentBits } = require("discord.js")
 
 const config = {
     option: {
-        intents: Object.values(GatewayIntentBits),
+        intents: Object.values(GatewayIntentBits).filter(Number.isInteger),
     },
     guilds: [
         "672956423545815040",

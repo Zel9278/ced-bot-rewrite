@@ -1,3 +1,3 @@
-# Cedbot ReWrite - Discord.js V13 Bot
+# Cedbot ReWrite - Discord.js Bot
 
 This project is unstable :1
