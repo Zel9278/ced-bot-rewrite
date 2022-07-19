@@ -22,7 +22,7 @@ function bot(config) {
             status: "dnd",
             activities: [
                 {
-                    name: "devvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv",
+                    name: "Depelopment by ced",
                     type: PresenceUpdateStatus.Playing,
                 },
             ],
