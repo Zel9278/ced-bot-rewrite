@@ -17,7 +17,7 @@ const interactionCreate = {
                         {
                             title: `This is an error in the command "${interaction.commandName}"`,
                             description: error.toString(),
-                            color: "ff0000",
+                            color: 0xff0000,
                         },
                     ],
                 })
@@ -41,7 +41,7 @@ const interactionCreate = {
                         {
                             title: `This is an error in the command ${interaction.commandName} button ${interaction.customId}`,
                             description: error.toString(),
-                            color: "ff0000",
+                            color: 0xff0000,
                         },
                     ],
                 })
