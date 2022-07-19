@@ -1,6 +1,7 @@
 const { Client } = require("discord.js")
 const commandLoader = require("./commands")
 const eventLoader = require("./events")
+const { PresenceUpdateStatus } = require("discord-api-types/v10")
 
 function bot(config) {
     const client = new Client(config.option)
@@ -22,7 +23,7 @@ function bot(config) {
             activities: [
                 {
                     name: "devvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv",
-                    type: "PLAYING",
+                    type: PresenceUpdateStatus.Playing,
                 },
             ],
         })
