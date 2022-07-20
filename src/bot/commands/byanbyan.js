@@ -18,6 +18,14 @@ const byanbyan = {
         const audioPath = `/tmp/SPOILER_byanbyan_${+new Date()}.wav`
         const audioFile = interaction.options.getAttachment("audiofile")
 
+        if (
+            audioFile.name.endsWith(".wav") ||
+            audioFile.name.endsWith(".mp3")
+        ) {
+            await interaction.reply("Invalid file, must be .mp3 or .wav.")
+            return
+        }
+
         interaction.reply(
             `Downloading audio file [${audioFile.name}] and bassing it to byanbyan...`
         )
