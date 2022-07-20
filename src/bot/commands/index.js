@@ -4,8 +4,8 @@ const { errorToFile } = require("../../utils")
 
 const commandLoader = (client) => {
     global.cmdFiles = fs
-    .readdirSync("./src/bot/commands")
-    .filter((file) => file.endsWith(".js"))
+        .readdirSync("./src/bot/commands")
+        .filter((file) => file.endsWith(".js"))
 
     const ignore = ["index.js"]
 
@@ -54,6 +54,7 @@ const commandLoader = (client) => {
 
         await client.config.guilds.forEach(async (g) => {
             const guild = client.guilds.resolve(g)
+            if (!guild) return
 
             await guild.commands
                 .set(commands.guild.map((c) => c.data))
