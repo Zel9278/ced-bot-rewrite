@@ -19,8 +19,10 @@ const byanbyan = {
         const audioFile = interaction.options.getAttachment("audiofile")
 
         if (
-            audioFile.name.endsWith(".wav") ||
-            audioFile.name.endsWith(".mp3")
+            !(
+                audioFile.name.endsWith(".wav") ||
+                audioFile.name.endsWith(".mp3")
+            )
         ) {
             await interaction.reply("Invalid file, must be .mp3 or .wav.")
             return
