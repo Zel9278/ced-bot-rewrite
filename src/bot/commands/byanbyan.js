@@ -21,10 +21,13 @@ const byanbyan = {
         if (
             !(
                 audioFile.name.endsWith(".wav") ||
-                audioFile.name.endsWith(".mp3")
+                audioFile.name.endsWith(".mp3") ||
+                audioFile.name.endsWith(".mp4")
             )
         ) {
-            await interaction.reply("Invalid file, must be .mp3 or .wav.")
+            await interaction.reply(
+                "Invalid file, must be .mp3 or .wav or .mp4."
+            )
             return
         }
 
