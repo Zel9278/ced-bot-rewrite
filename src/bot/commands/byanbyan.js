@@ -32,7 +32,7 @@ const byanbyan = {
         }
 
         interaction.reply(
-            `Downloading audio file [${audioFile.name}] and bassing it to byanbyan...`
+            `Downloading audio file and bassing it to byanbyan...`
         )
 
         const ffmpeg = spawn(
@@ -61,6 +61,10 @@ const byanbyan = {
             msg.reply({
                 content: "ffmpeg ended",
                 files: [audioPath],
+            }).catch((err) => {
+                msg.reply(
+                    `ffmpeg ended, but I couldn't send the file: ${err.toString()}`
+                )
             })
         })
     },
