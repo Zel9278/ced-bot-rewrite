@@ -31,9 +31,16 @@ const byanbyan = {
             return
         }
 
-        interaction.reply(
-            `Downloading audio file and bassing it to byanbyan...`
-        )
+        interaction.reply({
+            embeds: [
+                {
+                    title: "Downloading audio file and bassing it to byanbyan...",
+                    description: `Original audio file: ${audioFile.name}`,
+                    url: audioFile.url,
+                    color: 0x00ff00,
+                },
+            ],
+        })
 
         const ffmpeg = spawn(
             "ffmpeg",
