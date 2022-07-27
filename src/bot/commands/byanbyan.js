@@ -22,7 +22,8 @@ const byanbyan = {
             !(
                 audioFile.name.endsWith(".wav") ||
                 audioFile.name.endsWith(".mp3") ||
-                audioFile.name.endsWith(".mp4")
+                audioFile.name.endsWith(".mp4") ||
+                audioFile.name.endsWith(".bcstm")
             )
         ) {
             await interaction.reply(

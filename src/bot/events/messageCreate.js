@@ -9,7 +9,11 @@ const messageCreate = {
         if (![MessageType.Default, MessageType.Reply].includes(message.type))
             return
 
-        if (message.content.match(/https:\/\/discord.com\/channels\//)) {
+        if (
+            message.content.match(
+                /https:\/\/?(canary|ptb)?.discord.com\/channels\//
+            )
+        ) {
             const base = message.content
                 .split("/")
                 .filter((i) => parseInt(i, 10))

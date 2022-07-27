@@ -5,8 +5,12 @@
     "packageManager": "pnpm@7.0.0",
     "dependencies": {
         "@babel/code-frame": "^7.18.6",
-        "@discordjs/voice": "^0.9.0",
+        "@discordjs/opus": "^0.8.0",
+        "@discordjs/voice": "^0.11.0",
         "axios": "^0.27.2",
+        "canvas": "^2.9.3",
+        "chart.js": "^3.8.2",
+        "chartjs-node-canvas": "^4.1.6",
         "cpu-stats": "^1.0.0",
         "discord-api-types": "^0.36.2",
         "discord.js": "14.0.1",
