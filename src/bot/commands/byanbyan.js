@@ -1,5 +1,5 @@
 const { spawn } = require("child_process")
-const { ApplicationCommandOptionType } = require("discord-api-types/v10")
+const { ApplicationCommandOptionType } = require("discord.js")
 
 const byanbyan = {
     data: {

@@ -1,10 +1,7 @@
 const moment = require("moment-timezone")
 const { unixToDate } = require("../../utils")
 const { client } = require("../../../")
-const {
-    ApplicationCommandOptionType,
-    ActivityType,
-} = require("discord-api-types/v10")
+const { ApplicationCommandOptionType, ActivityType } = require("discord.js")
 
 const user = {
     data: {

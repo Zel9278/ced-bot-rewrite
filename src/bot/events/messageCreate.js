@@ -1,6 +1,6 @@
 const { client } = require("../../..")
 const { byteToData } = require("../..//utils")
-const { MessageType } = require("discord-api-types/v10")
+const { MessageType } = require("discord.js")
 
 const messageCreate = {
     name: "messageCreate",

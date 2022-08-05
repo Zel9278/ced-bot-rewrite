@@ -5,6 +5,7 @@ const { errorToFile } = require("../../utils")
 const commandLoader = (client) => {
     global.cmdFiles = fs
         .readdirSync("./src/bot/commands")
+        .filter((file) => !file.startsWith("_"))
         .filter((file) => file.endsWith(".js"))
 
     const ignore = ["index.js"]
@@ -19,11 +20,11 @@ const commandLoader = (client) => {
         const { infoLoop } = require("../../../")
 
         fs.readdirSync(__dirname)
+            .filter((file) => !file.startsWith("_"))
+            .filter((file) => file.endsWith(".js"))
             .filter((a) => !ignore.includes(a))
             .forEach((file) => {
                 try {
-                    if (!file.endsWith(".js")) return
-
                     const command = require(`./${file}`)
                     command._path = path.join(__dirname, file)
 

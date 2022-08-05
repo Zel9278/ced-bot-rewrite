@@ -1,4 +1,4 @@
-const { ApplicationCommandOptionType } = require("discord-api-types/v10")
+const { ApplicationCommandOptionType } = require("discord.js")
 
 const diceroll = {
     data: {

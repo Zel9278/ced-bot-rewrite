@@ -1,6 +1,6 @@
 const { client } = require("../../../")
 const puppeteer = require("puppeteer")
-const { ApplicationCommandOptionType } = require("discord-api-types/v10")
+const { ApplicationCommandOptionType } = require("discord.js")
 
 const webshot = {
     data: {

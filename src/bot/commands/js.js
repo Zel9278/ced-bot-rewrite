@@ -3,7 +3,7 @@ const { toSafeString, interactionReply, errorToFile } = require("../../utils")
 const { codeFrameColumns } = require("@babel/code-frame")
 const { inspect } = require("util")
 const fs = require("fs")
-const { ApplicationCommandOptionType } = require("discord-api-types/v10")
+const { ApplicationCommandOptionType } = require("discord.js")
 const axios = require("axios")
 
 const parseEnv = (env_string) =>

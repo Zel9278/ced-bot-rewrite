@@ -1,7 +1,7 @@
 const { Client } = require("discord.js")
 const commandLoader = require("./commands")
 const eventLoader = require("./events")
-const { PresenceUpdateStatus } = require("discord-api-types/v10")
+const { PresenceUpdateStatus } = require("discord.js")
 
 function bot(config) {
     const client = new Client(config.option)
