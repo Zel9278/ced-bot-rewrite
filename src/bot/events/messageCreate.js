@@ -11,52 +11,47 @@ const messageCreate = {
 
         if (
             message.content.match(
-                /https:\/\/?(canary|ptb)?.discord.com\/channels\//
+                /https:\/\/?(canary|ptb)?.discord.com\/channels\/[0-9]+\/[0-9]+\/[0-9]+/g
             )
         ) {
-            const base = message.content
-                .split("/")
-                .filter((i) => parseInt(i, 10))
-            const channel = client.channels.cache.get(base[1])
-            const fetchMessage = channel?.messages.fetch(base[2])
+            const msgs = message.content.match(
+                /https:\/\/?(canary|ptb)?.discord.com\/channels\/[0-9]+\/[0-9]+\/[0-9]+/g
+            )
+            let fetchedMessages = []
+            for (const url of msgs) {
+                const base = url.split("/").filter((i) => parseInt(i, 10))
+                const channel = client.channels.resolve(base[1])
+                const fetchMessage = await channel?.messages.fetch(base[2])
+                if (channel && fetchMessage) {
+                    const msg = {
+                        title:
+                            `Message Link` +
+                            ((fetchMessage.embeds.length > 0
+                                ? " (with embeds)"
+                                : "") ||
+                                (fetchMessage.attachments.size > 0
+                                    ? " (with attachments)"
+                                    : "")),
+                        url: fetchMessage.url,
+                        description: fetchMessage.content,
+                        author: {
+                            name: fetchMessage.author.tag,
+                            iconURL: fetchMessage.author.avatarURL(),
+                        },
+                        footer: {
+                            text: `Message From ${fetchMessage.guild.name}/${fetchMessage.channel.name}`,
+                        },
+                    }
 
-            fetchMessage?.then((msg) => {
-                message.reply({
-                    allowedMentions: {
-                        repliedUser: false,
-                    },
-                    embeds: [
-                        [
-                            {
-                                title: `Message Link`,
-                                url: msg.url,
-                                description: msg.content,
-                                author: {
-                                    name: msg.author.tag,
-                                    iconURL: msg.author.avatarURL(),
-                                },
-                                footer: {
-                                    text: `Message From ${msg.guild.name}/${msg.channel.name}`,
-                                },
-                                timestamp: new Date(),
-                            },
-                        ],
-                        msg.attachments.map((a) => {
-                            return {
-                                title: `Attachment`,
-                                url: a.url,
-                                description: `${a.name} (${byteToData(
-                                    a.size
-                                )})`,
-                                image: {
-                                    url: a.url.match(/.png|.jpg|.jpeg/)
-                                        ? a?.url
-                                        : "",
-                                },
-                            }
-                        }),
-                    ].flat(),
-                })
+                    fetchedMessages.push(msg)
+                }
+            }
+
+            message.reply({
+                allowedMentions: {
+                    repliedUser: false,
+                },
+                embeds: fetchedMessages,
             })
         }
     },
