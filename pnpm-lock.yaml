@@ -18,7 +18,7 @@ specifiers:
   moment-timezone: 0.5.37
   newsapi: 2.4.1
   prettier: 2.7.1
-  puppeteer: 15.4.0
+  puppeteer: 15.5.0
   socket.io: 4.5.2
   twit: 2.2.11
 
@@ -39,7 +39,7 @@ dependencies:
   luxon: 2.5.0
   moment-timezone: 0.5.37
   newsapi: 2.4.1
-  puppeteer: 15.4.0
+  puppeteer: 15.5.0
   socket.io: 4.5.2
   twit: 2.2.11
 
@@ -470,7 +470,7 @@ packages:
     dev: false
 
   /concat-map/0.0.1:
-    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
+    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
     dev: false
 
   /console-control-strings/1.1.0:
@@ -593,8 +593,8 @@ packages:
     engines: {node: '>=8'}
     dev: false
 
-  /devtools-protocol/0.0.1011705:
-    resolution: {integrity: sha512-OKvTvu9n3swmgYshvsyVHYX0+aPzCoYUnyXUacfQMmFtBtBKewV/gT4I9jkAbpTqtTi2E4S9MXLlvzBDUlqg0Q==}
+  /devtools-protocol/0.0.1019158:
+    resolution: {integrity: sha512-wvq+KscQ7/6spEV7czhnZc9RM/woz1AY+/Vpd8/h2HFMwJSdTliu7f/yr1A6vDdJfKICZsShqsYpEQbdhg8AFQ==}
     dev: false
 
   /discord-api-types/0.36.3:
@@ -1376,14 +1376,14 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  /puppeteer/15.4.0:
-    resolution: {integrity: sha512-wxJRbofjaycCaQ9fhABlToJobrjxlABiFi6NvdkOPVJMYFblxDlDTjkg+b6bZYi7xN+lEXn84GBZsA5DYb3wfw==}
+  /puppeteer/15.5.0:
+    resolution: {integrity: sha512-+vZPU8iBSdCx1Kn5hHas80fyo0TiVyMeqLGv/1dygX2HKhAZjO9YThadbRTCoTYq0yWw+w/CysldPsEekDtjDQ==}
     engines: {node: '>=14.1.0'}
     requiresBuild: true
     dependencies:
       cross-fetch: 3.1.5
       debug: 4.3.4
-      devtools-protocol: 0.0.1011705
+      devtools-protocol: 0.0.1019158
       extract-zip: 2.0.1
       https-proxy-agent: 5.0.1
       pkg-dir: 4.2.0
