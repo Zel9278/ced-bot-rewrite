@@ -20,7 +20,7 @@
         "luxon": "3.0.3",
         "moment-timezone": "0.5.37",
         "newsapi": "2.4.1",
-        "puppeteer": "18.0.2",
+        "puppeteer": "18.0.3",
         "socket.io": "4.5.2",
         "twit": "2.2.11"
     },
