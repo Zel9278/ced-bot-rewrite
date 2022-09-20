@@ -18,7 +18,7 @@ specifiers:
   moment-timezone: 0.5.37
   newsapi: 2.4.1
   prettier: 2.7.1
-  puppeteer: 18.0.2
+  puppeteer: 18.0.3
   socket.io: 4.5.2
   twit: 2.2.11
 
@@ -39,7 +39,7 @@ dependencies:
   luxon: 3.0.3
   moment-timezone: 0.5.37
   newsapi: 2.4.1
-  puppeteer: 18.0.2
+  puppeteer: 18.0.3
   socket.io: 4.5.2
   twit: 2.2.11
 
@@ -1330,8 +1330,8 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  /puppeteer/18.0.2:
-    resolution: {integrity: sha512-EdquaZg1n5IgZJzUc/EXDmtghJU6aCZJ/pl2onwL2g+cfG5HkxwSRVNKkDf76qTk3fMh1OUtqvAJMUJ+6HvYEg==}
+  /puppeteer/18.0.3:
+    resolution: {integrity: sha512-IiW4Zz0xbphl1lQEAB7grPucbk/aM+GND4aJ7I8gOzOSp7Ika1bz35maox4FbELpPL8sqXsVQRNrXQnzBMiCzQ==}
     engines: {node: '>=14.1.0'}
     requiresBuild: true
     dependencies:
