@@ -14,12 +14,18 @@ const update = {
         }
 
         const fetch = execSync("git fetch").toString()
-        if (!fetch) await interaction.reply("fetch not found")
-        if (fetch) await interaction.reply("```bash\n" + fetch + "\n```")
+        if (fetch) {
+            await interaction.reply("```bash\n" + fetch + "\n```")
+        } else {
+            await interaction.reply("fetch not found")
+        }
         const msg = await interaction.fetchReply()
         const diff = execSync("git diff HEAD..master/master").toString()
-        if (!diff) return await msg.reply("diff not found")
-        await msg.reply("```diff\n" + diff + "\n```")
+        if (diff) {
+            await msg.reply("```diff\n" + diff + "\n```")
+        } else {
+            await msg.reply("diff not found")
+        }
         if (diff.match(/package.json/)) {
             const pnpm = execSync("pnpm i").toString()
             await msg.reply("```bash\n" + pnpm + "\n```")
