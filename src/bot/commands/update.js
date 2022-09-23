@@ -13,22 +13,31 @@ const update = {
             )
         }
 
+        let nfmsg = ""
+
         const fetch = execSync("git fetch").toString()
         if (fetch) {
-            await interaction.reply("```bash\n" + fetch + "\n```")
+            await interaction.reply("fetch\n```bash\n" + fetch + "\n```")
         } else {
-            await interaction.reply("fetch not found")
+            nfmsg = "fetch not found"
+            await interaction.reply(nfmsg)
         }
         const msg = await interaction.fetchReply()
         const diff = execSync("git diff HEAD..master/master").toString()
         if (diff) {
-            await msg.reply("```diff\n" + diff + "\n```")
+            await msg.reply("diff\n```diff\n" + diff + "\n```")
         } else {
-            await msg.reply("diff not found")
+            nfmsg = nfmsg + "\ndiff not found"
+            await msg.edit(nfmsg)
         }
         if (diff.match(/package.json/)) {
             const pnpm = execSync("pnpm i").toString()
-            await msg.reply("```bash\n" + pnpm + "\n```")
+            await msg.reply("pnpm\n```bash\n" + pnpm + "\n```")
+        }
+        if (!fetch && !diff) {
+            nfmsg = nfmsg + "\nbot is up to date."
+            await msg.edit(nfmsg)
+            return
         }
         const pull = execSync("git pull").toString()
         if (!pull) return await msg.reply("pull not found")

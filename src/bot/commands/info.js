@@ -1,14 +1,26 @@
 const { client, infoLoop, config } = require("../../../")
 const { unixToDate, byteToData, progressBar } = require("../../utils")
+const { ApplicationCommandOptionType } = require("discord.js")
 const os = require("os")
 const Discord = require("discord.js")
+const packages = require("../../../package.json")
 
 const info = {
     data: {
         name: "info",
         description: "Displays the bot information.",
+        options: [
+            {
+                name: "info",
+                description: "other info",
+                type: ApplicationCommandOptionType.String,
+            },
+        ],
     },
     async exec(interaction) {
+        const other = interaction.options.getString("info")
+        const others = ["packages"]
+
         const parsmema = Math.floor((1 - os.freemem() / os.totalmem()) * 20)
         const parsmemb = Math.floor((1 - os.freemem() / os.totalmem()) * 100)
         const cpuUsage = infoLoop.current.cpu.cpus
@@ -21,68 +33,88 @@ const info = {
         const parsdub = Math.floor((1 - diskUsage.free / diskUsage.total) * 100)
         const codeBlock = "```"
 
-        await interaction.reply({
-            embeds: [
-                {
-                    title: `Version ${config.global.version} ${config.global.type} ${config.global.date}`,
-                    description: config.global.info,
-                    url: "https://beta-cedbot.csys64.com/",
-                    color: 2522551,
-                    fields: [
+        switch (other) {
+            case "packages":
+                await interaction.reply(
+                    "```\n" +
+                        Object.keys(packages.dependencies)
+                            .map((e) => {
+                                return `${e}: ${packages.dependencies[e]}`
+                            })
+                            .join("\n") +
+                        "\n```"
+                )
+                break
+
+            default:
+                await interaction.reply({
+                    embeds: [
                         {
-                            name: "Versions",
-                            value: `Node: ${process.version}\nDiscord: ${Discord.version}`,
-                        },
-                        {
-                            name: "OS",
-                            value: `${os.release()} ${os.platform()} ${os.arch()} ${os.version()}\n${
-                                os.userInfo().username
-                            }@${os.hostname()}`,
-                        },
-                        {
-                            name: "OSCPU",
-                            value: `${
-                                os.cpus()[0].model
-                            }\n${codeBlock}\n[${progressBar(
-                                cpub,
-                                20
-                            )}] ${cpua}%\n${codeBlock}`,
-                        },
-                        {
-                            name: "OSMemory",
-                            value: `${byteToData(
-                                os.totalmem() - os.freemem()
-                            )} / ${byteToData(
-                                os.totalmem()
-                            )}\n${codeBlock}\n[${progressBar(
-                                parsmema,
-                                20
-                            )}] ${parsmemb}%\n${codeBlock}`,
-                        },
-                        {
-                            name: "OSStorage",
-                            value: `${byteToData(
-                                diskUsage.total - diskUsage.free
-                            )} / ${byteToData(
-                                diskUsage.total
-                            )}\n${codeBlock}\n[${progressBar(
-                                parsdua,
-                                20
-                            )}] ${parsdub}%\n${codeBlock}`,
-                        },
-                        {
-                            name: "OSUptime",
-                            value: unixToDate(os.uptime() * 1000),
-                        },
-                        {
-                            name: "BotUptime",
-                            value: unixToDate(client.uptime),
+                            title: `Version ${config.global.version} ${config.global.type} ${config.global.date}`,
+                            description: config.global.info,
+                            url: "https://beta-cedbot.csys64.com/",
+                            color: 2522551,
+                            fields: [
+                                {
+                                    name: "Versions",
+                                    value: `Node: ${process.version}\nDiscord: ${Discord.version}`,
+                                },
+                                {
+                                    name: "OS",
+                                    value: `${os.release()} ${os.platform()} ${os.arch()} ${os.version()}\n${
+                                        os.userInfo().username
+                                    }@${os.hostname()}`,
+                                },
+                                {
+                                    name: "OSCPU",
+                                    value: `${
+                                        os.cpus()[0].model
+                                    }\n${codeBlock}\n[${progressBar(
+                                        cpub,
+                                        20
+                                    )}] ${cpua}%\n${codeBlock}`,
+                                },
+                                {
+                                    name: "OSMemory",
+                                    value: `${byteToData(
+                                        os.totalmem() - os.freemem()
+                                    )} / ${byteToData(
+                                        os.totalmem()
+                                    )}\n${codeBlock}\n[${progressBar(
+                                        parsmema,
+                                        20
+                                    )}] ${parsmemb}%\n${codeBlock}`,
+                                },
+                                {
+                                    name: "OSStorage",
+                                    value: `${byteToData(
+                                        diskUsage.total - diskUsage.free
+                                    )} / ${byteToData(
+                                        diskUsage.total
+                                    )}\n${codeBlock}\n[${progressBar(
+                                        parsdua,
+                                        20
+                                    )}] ${parsdub}%\n${codeBlock}`,
+                                },
+                                {
+                                    name: "OSUptime",
+                                    value: unixToDate(os.uptime() * 1000),
+                                },
+                                {
+                                    name: "BotUptime",
+                                    value: unixToDate(client.uptime),
+                                },
+                                {
+                                    name: "other info",
+                                    value: others.join("\n"),
+                                },
+                            ],
+                            timestamp: new Date(),
                         },
                     ],
-                    timestamp: new Date(),
-                },
-            ],
-        })
+                })
+                break
+        }
     },
 }
 
