@@ -17,7 +17,18 @@ const update = {
 
         const fetch = execSync("git fetch").toString()
         if (fetch) {
-            await interaction.reply("fetch\n```bash\n" + fetch + "\n```")
+            if (fetch.length <= 2000) {
+                await interaction.reply({
+                    files: [
+                        {
+                            attachment: Buffer.from(fetch),
+                            name: "fetch.txt",
+                        },
+                    ],
+                })
+            } else {
+                await interaction.reply("fetch\n```bash\n" + fetch + "\n```")
+            }
         } else {
             nfmsg = "fetch not found"
             await interaction.reply(nfmsg)
@@ -25,14 +36,36 @@ const update = {
         const msg = await interaction.fetchReply()
         const diff = execSync("git diff HEAD..master/master").toString()
         if (diff) {
-            await msg.reply("diff\n```diff\n" + diff + "\n```")
+            if (diff.length >= 4000) {
+                await msg.reply({
+                    files: [
+                        {
+                            attachment: Buffer.from(diff),
+                            name: "fetch.txt",
+                        },
+                    ],
+                })
+            } else {
+                await msg.reply("diff\n```diff\n" + diff + "\n```")
+            }
         } else {
             nfmsg = nfmsg + "\ndiff not found"
             await msg.edit(nfmsg)
         }
         if (diff.match(/package.json/)) {
             const pnpm = execSync("pnpm i").toString()
-            await msg.reply("pnpm\n```bash\n" + pnpm + "\n```")
+            if (pnpm.length >= 4000) {
+                await msg.reply({
+                    files: [
+                        {
+                            attachment: Buffer.from(pnpm),
+                            name: "pnpm.txt",
+                        },
+                    ],
+                })
+            } else {
+                await msg.reply("pnpm\n```bash\n" + pnpm + "\n```")
+            }
         }
         if (!fetch && !diff) {
             nfmsg = nfmsg + "\nbot is up to date."
@@ -41,6 +74,18 @@ const update = {
         }
         const pull = execSync("git pull").toString()
         if (!pull) return await msg.reply("pull not found")
+        if (pull.length >= 4000) {
+            await msg.reply({
+                files: [
+                    {
+                        attachment: Buffer.from(pull),
+                        name: "pull.txt",
+                    },
+                ],
+            })
+        } else {
+            await msg.reply("pull\n```bash\n" + pull + "\n```")
+        }
         await msg.reply("```bash\n" + pull + "\n```")
         await msg.reply("Restarting...")
         execSync("pm2 restart cedbot-re")
