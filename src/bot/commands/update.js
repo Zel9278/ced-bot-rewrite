@@ -13,6 +13,10 @@ const update = {
             )
         }
 
+        const HEAD = `HEAD..${execSync(
+            "git remote show"
+        ).toString()}/${execSync("git rev-parse --abbrev-ref HEAD").toString()}`
+
         let nfmsg = ""
 
         const fetch = execSync("git fetch").toString()
@@ -34,7 +38,7 @@ const update = {
             await interaction.reply(nfmsg)
         }
         const msg = await interaction.fetchReply()
-        const diff = execSync("git diff HEAD..master/master").toString()
+        const diff = execSync(`git diff ${HEAD}`).toString()
         if (diff) {
             if (diff.length >= 4000) {
                 await msg.reply({
