@@ -1,5 +1,6 @@
 const { EventEmitter } = require("events")
 const os = require("os")
+const path = require("path")
 const diskUsage = require("diskusage")
 const cpuStats = require("cpu-stats")
 const { unixToDate } = require("./utils")
@@ -10,7 +11,7 @@ function info(client) {
 
     setInterval(() => {
         cpuStats(1000, (error, result) => {
-            const du = diskUsage.checkSync("/")
+            const du = diskUsage.checkSync(path.parse(process.cwd()).root)
             data.emit("data", {
                 cpu: {
                     model: os.cpus()[0].model,

@@ -1,11 +1,10 @@
 const express = require("express")
 const socketIO = require("socket.io")
 const http = require("http")
-const fs = require("fs")
 const path = require("path")
 const os = require("os")
-const { execSync } = require("child_process")
 const discordJS = require("discord.js")
+const { getMacOSRelease, getOSRelease } = require("../utils")
 
 function web(client, infoLoop, config) {
     const app = express()
@@ -24,6 +23,16 @@ function web(client, infoLoop, config) {
     infoLoop.on("commandInitialize", (data) => io.emit("commands", data))
 
     io.on("connection", (c) => {
+        const isWin = os.platform() === "win32"
+        const isMac = os.platform() === "darwin"
+
+        const version = isWin
+            ? os.version()
+            : isMac
+            ? getMacOSRelease().name
+            : getOSRelease()?.pretty_name
+        const _os = `${os.type()} ${os.platform()} ${os.arch()} ${os.release()}`
+
         c.emit("commands", client._rawCommands)
         c.emit("hi", {
             versions: {
@@ -34,12 +43,7 @@ function web(client, infoLoop, config) {
                     config.global.type,
                     config.global.date,
                 ],
-                os: [
-                    `${execSync("cat /etc/issue")
-                        .toString()
-                        .replace(/\\n|\\l|\\r|\(|\)/g, "")}`,
-                    `(${os.platform()} ${os.arch()} ${os.release()})`,
-                ],
+                os: [`${version}`, `(${_os})`],
             },
             updateInfo: config.global.info,
             madeBy: client.users.resolve("474413012120502304")?.tag,

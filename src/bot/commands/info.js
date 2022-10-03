@@ -1,5 +1,11 @@
 const { client, infoLoop, config } = require("../../../")
-const { unixToDate, byteToData, progressBar } = require("../../utils")
+const {
+    unixToDate,
+    byteToData,
+    progressBar,
+    getMacOSRelease,
+    getOSRelease,
+} = require("../../utils")
 const { ApplicationCommandOptionType } = require("discord.js")
 const os = require("os")
 const Discord = require("discord.js")
@@ -20,6 +26,17 @@ const info = {
     async exec(interaction) {
         const other = interaction.options.getString("info")
         const others = ["packages"]
+
+        const isWin = os.platform() === "win32"
+        const isMac = os.platform() === "darwin"
+
+        const version = isWin
+            ? os.version()
+            : isMac
+            ? getMacOSRelease().name
+            : getOSRelease()?.pretty_name
+        const _os = `${version}(${os.type()} ${os.platform()} ${os.arch()} ${os.release()})`
+        const model = os.cpus()[0] ? os.cpus()[0].model : "unknown cpu"
 
         const parsmema = Math.floor((1 - os.freemem() / os.totalmem()) * 20)
         const parsmemb = Math.floor((1 - os.freemem() / os.totalmem()) * 100)
@@ -61,15 +78,13 @@ const info = {
                                 },
                                 {
                                     name: "OS",
-                                    value: `${os.release()} ${os.platform()} ${os.arch()} ${os.version()}\n${
+                                    value: `${_os}\n${
                                         os.userInfo().username
                                     }@${os.hostname()}`,
                                 },
                                 {
                                     name: "OSCPU",
-                                    value: `${
-                                        os.cpus()[0].model
-                                    }\n${codeBlock}\n[${progressBar(
+                                    value: `${model}\n${codeBlock}\n[${progressBar(
                                         cpub,
                                         20
                                     )}] ${cpua}%\n${codeBlock}`,
