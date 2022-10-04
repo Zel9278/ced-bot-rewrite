@@ -13,13 +13,15 @@ const update = {
             )
         }
 
-        const HEAD = `HEAD..${execSync(
-            "git remote show"
-        ).toString()}/${execSync("git rev-parse --abbrev-ref HEAD").toString()}`
+        const HEAD = `HEAD..${execSync("git remote show", {
+            windowsHide: true,
+        }).toString()}/${execSync("git rev-parse --abbrev-ref HEAD", {
+            windowsHide: true,
+        }).toString()}`
 
         let nfmsg = ""
 
-        const fetch = execSync("git fetch").toString()
+        const fetch = execSync("git fetch", { windowsHide: true }).toString()
         if (fetch) {
             if (fetch.length <= 2000) {
                 await interaction.reply({
@@ -38,7 +40,9 @@ const update = {
             await interaction.reply(nfmsg)
         }
         const msg = await interaction.fetchReply()
-        const diff = execSync(`git diff ${HEAD}`).toString()
+        const diff = execSync(`git diff ${HEAD}`, {
+            windowsHide: true,
+        }).toString()
         if (diff) {
             if (diff.length >= 4000) {
                 await msg.reply({
@@ -57,7 +61,7 @@ const update = {
             await msg.edit(nfmsg)
         }
         if (diff.match(/package.json/)) {
-            const pnpm = execSync("pnpm i").toString()
+            const pnpm = execSync("pnpm i", { windowsHide: true }).toString()
             if (pnpm.length >= 4000) {
                 await msg.reply({
                     files: [
@@ -76,7 +80,7 @@ const update = {
             await msg.edit(nfmsg)
             return
         }
-        const pull = execSync("git pull").toString()
+        const pull = execSync("git pull", { windowsHide: true }).toString()
         if (!pull) return await msg.reply("pull not found")
         if (pull.length >= 4000) {
             await msg.reply({
@@ -92,7 +96,7 @@ const update = {
         }
         await msg.reply("```bash\n" + pull + "\n```")
         await msg.reply("Restarting...")
-        execSync("pm2 restart cedbot-re")
+        execSync("pm2 restart cedbot-re", { windowsHide: true })
     },
     isGuildCommand: true,
 }
