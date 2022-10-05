@@ -18,7 +18,7 @@ specifiers:
   moment-timezone: 0.5.37
   newsapi: 2.4.1
   prettier: 2.7.1
-  puppeteer: 18.1.0
+  puppeteer: 18.2.0
   socket.io: 4.5.2
   twit: 2.2.11
 
@@ -39,7 +39,7 @@ dependencies:
   luxon: 3.0.4
   moment-timezone: 0.5.37
   newsapi: 2.4.1
-  puppeteer: 18.1.0
+  puppeteer: 18.2.0
   socket.io: 4.5.2
   twit: 2.2.11
 
@@ -1331,22 +1331,36 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  /puppeteer/18.1.0:
-    resolution: {integrity: sha512-2RCVWIF+pZOSfksWlQU0Hh6CeUT5NYt66CDDgRyuReu6EvBAk1y+/Q7DuzYNvGChSecGMb7QPN0hkxAa3guAog==}
+  /puppeteer-core/18.2.0:
+    resolution: {integrity: sha512-5JLJt3At3zNh6rVNG7o7VOonH6HIsPSFeUD+X4bTvfU8Fh/2ihuhXtE6+vYi5hG7sL+m3yq8cpCsV1Jh47i3/Q==}
     engines: {node: '>=14.1.0'}
-    requiresBuild: true
     dependencies:
       cross-fetch: 3.1.5
       debug: 4.3.4
       devtools-protocol: 0.0.1045489
       extract-zip: 2.0.1
       https-proxy-agent: 5.0.1
-      progress: 2.0.3
       proxy-from-env: 1.1.0
       rimraf: 3.0.2
       tar-fs: 2.1.1
       unbzip2-stream: 1.4.3
       ws: 8.9.0
+    transitivePeerDependencies:
+      - bufferutil
+      - encoding
+      - supports-color
+      - utf-8-validate
+    dev: false
+
+  /puppeteer/18.2.0:
+    resolution: {integrity: sha512-auxgcjcM7p7+2t6ga6izrrtks7Z1fl7Qv4Gwb9tvH0U0dnBYgbq8GxOZ5mDgSolWgN6NmfG2bxdfOPzc0yOfDA==}
+    engines: {node: '>=14.1.0'}
+    requiresBuild: true
+    dependencies:
+      https-proxy-agent: 5.0.1
+      progress: 2.0.3
+      proxy-from-env: 1.1.0
+      puppeteer-core: 18.2.0
     transitivePeerDependencies:
       - bufferutil
       - encoding
