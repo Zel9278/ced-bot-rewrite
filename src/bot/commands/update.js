@@ -23,7 +23,7 @@ const update = {
 
         const fetch = execSync("git fetch", { windowsHide: true }).toString()
         if (fetch) {
-            if (fetch.length <= 2000) {
+            if (fetch.length >= 2000) {
                 await interaction.reply({
                     files: [
                         {
@@ -44,7 +44,7 @@ const update = {
             windowsHide: true,
         }).toString()
         if (diff) {
-            if (diff.length >= 4000) {
+            if (diff.length >= 2000) {
                 await msg.reply({
                     files: [
                         {
@@ -62,7 +62,7 @@ const update = {
         }
         if (diff.match(/package.json/)) {
             const pnpm = execSync("pnpm i", { windowsHide: true }).toString()
-            if (pnpm.length >= 4000) {
+            if (pnpm.length >= 2000) {
                 await msg.reply({
                     files: [
                         {

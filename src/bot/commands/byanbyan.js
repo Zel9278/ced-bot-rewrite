@@ -1,5 +1,8 @@
 const { spawn } = require("child_process")
+const { rmSync, existsSync } = require("fs")
+const path = require("path")
 const { ApplicationCommandOptionType } = require("discord.js")
+const e = require("express")
 
 const byanbyan = {
     data: {
@@ -15,7 +18,10 @@ const byanbyan = {
         ],
     },
     async exec(interaction) {
-        const audioPath = `/tmp/SPOILER_byanbyan_${+new Date()}.wav`
+        const audioPath = path.join(
+            process.cwd(),
+            `SPOILER_byanbyan_${+new Date()}.wav`
+        )
         const audioFile = interaction.options.getAttachment("audiofile")
 
         if (
@@ -62,18 +68,27 @@ const byanbyan = {
                 "opus",
                 audioPath,
             ],
-            { shell: true }
+            { shell: true, windowsHide: true }
         )
         ffmpeg.on("exit", async () => {
             const msg = await interaction.fetchReply()
             msg.reply({
                 content: "ffmpeg ended",
                 files: [audioPath],
-            }).catch((err) => {
-                msg.reply(
-                    `ffmpeg ended, but I couldn't send the file: ${err.toString()}`
-                )
             })
+                .then((data) => {
+                    if (existsSync(audioPath)) rmSync(audioPath)
+                })
+                .catch((err) => {
+                    msg.reply(
+                        "ffmpeg ended, but I couldn't send the file: " +
+                            e.name +
+                            "\n```" +
+                            err.message +
+                            "\n```"
+                    )
+                    if (existsSync(audioPath)) rmSync(audioPath)
+                })
         })
     },
 }
