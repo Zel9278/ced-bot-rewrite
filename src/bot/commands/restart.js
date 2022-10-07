@@ -14,7 +14,7 @@ const restart = {
         }
 
         await interaction.reply("Restarting...")
-        execSync("pm2 restart cedbot-re")
+        execSync("pm2 restart cedbot-re --update-env")
     },
     isGuildCommand: true,
 }
