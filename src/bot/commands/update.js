@@ -96,7 +96,7 @@ const update = {
         }
         await msg.reply("```bash\n" + pull + "\n```")
         await msg.reply("Restarting...")
-        execSync("pm2 restart cedbot-re", { windowsHide: true })
+        execSync("pm2 restart cedbot-re --update-env", { windowsHide: true })
     },
     isGuildCommand: true,
 }
