@@ -21,10 +21,14 @@ const update = {
 
         let nfmsg = ""
 
+        await interaction.reply("Please wait...")
+
+        const msg = await interaction.fetchReply()
+
         const fetch = execSync("git fetch", { windowsHide: true }).toString()
         if (fetch) {
             if (fetch.length >= 2000) {
-                await interaction.reply({
+                await msg.reply({
                     files: [
                         {
                             attachment: Buffer.from(fetch),
@@ -39,10 +43,10 @@ const update = {
             nfmsg = "fetch not found"
             await interaction.reply(nfmsg)
         }
-        const msg = await interaction.fetchReply()
         const diff = execSync(`git diff ${HEAD}`, {
             windowsHide: true,
         }).toString()
+
         if (diff) {
             if (diff.length >= 2000) {
                 await msg.reply({
@@ -75,11 +79,13 @@ const update = {
                 await msg.reply("pnpm\n```bash\n" + pnpm + "\n```")
             }
         }
+
         if (!fetch && !diff) {
             nfmsg = nfmsg + "\nbot is up to date."
             await msg.edit(nfmsg)
             return
         }
+
         const pull = execSync("git pull", { windowsHide: true }).toString()
         if (!pull) return await msg.reply("pull not found")
         if (pull.length >= 4000) {
@@ -95,6 +101,7 @@ const update = {
             await msg.reply("pull\n```bash\n" + pull + "\n```")
         }
         await msg.reply("```bash\n" + pull + "\n```")
+
         await msg.reply("Restarting...")
         execSync("pm2 restart cedbot-re --update-env", { windowsHide: true })
     },
