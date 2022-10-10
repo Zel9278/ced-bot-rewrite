@@ -37,11 +37,13 @@ const update = {
                     ],
                 })
             } else {
-                await interaction.reply("fetch\n```bash\n" + fetch + "\n```")
+                await interaction.editReply(
+                    "fetch\n```bash\n" + fetch + "\n```"
+                )
             }
         } else {
             nfmsg = "fetch not found"
-            await interaction.reply(nfmsg)
+            await interaction.editReply(nfmsg)
         }
         const diff = execSync(`git diff ${HEAD}`, {
             windowsHide: true,
