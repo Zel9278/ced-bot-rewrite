@@ -66,21 +66,6 @@ const update = {
             nfmsg = nfmsg + "\ndiff not found"
             await msg.edit(nfmsg)
         }
-        if (diff.match(/package.json/)) {
-            const pnpm = execSync("pnpm i", { windowsHide: true }).toString()
-            if (pnpm.length >= 2000) {
-                await msg.reply({
-                    files: [
-                        {
-                            attachment: Buffer.from(pnpm),
-                            name: "pnpm.txt",
-                        },
-                    ],
-                })
-            } else {
-                await msg.reply("pnpm\n```bash\n" + pnpm + "\n```")
-            }
-        }
 
         if (!fetch && !diff) {
             nfmsg = nfmsg + "\nbot is up to date."
@@ -103,6 +88,22 @@ const update = {
             await msg.reply("pull\n```bash\n" + pull + "\n```")
         }
         await msg.reply("```bash\n" + pull + "\n```")
+
+        if (diff.match(/package.json/)) {
+            const pnpm = execSync("pnpm i", { windowsHide: true }).toString()
+            if (pnpm.length >= 2000) {
+                await msg.reply({
+                    files: [
+                        {
+                            attachment: Buffer.from(pnpm),
+                            name: "pnpm.txt",
+                        },
+                    ],
+                })
+            } else {
+                await msg.reply("pnpm\n```bash\n" + pnpm + "\n```")
+            }
+        }
 
         await msg.reply("Restarting...")
         execSync("pm2 restart cedbot-re --update-env", { windowsHide: true })
