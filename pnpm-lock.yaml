@@ -13,7 +13,7 @@ specifiers:
   dotenv: 16.0.3
   express: 4.18.2
   luxon: 3.0.4
-  moment-timezone: 0.5.37
+  moment-timezone: 0.5.38
   newsapi: 2.4.1
   prettier: 2.7.1
   puppeteer: 19.0.0
@@ -33,7 +33,7 @@ dependencies:
   dotenv: 16.0.3
   express: 4.18.2
   luxon: 3.0.4
-  moment-timezone: 0.5.37
+  moment-timezone: 0.5.38
   newsapi: 2.4.1
   puppeteer: 19.0.0
   socket.io: 4.5.3
@@ -1105,8 +1105,8 @@ packages:
     hasBin: true
     dev: false
 
-  /moment-timezone/0.5.37:
-    resolution: {integrity: sha512-uEDzDNFhfaywRl+vwXxffjjq1q0Vzr+fcQpQ1bU0kbzorfS7zVtZnCnGc8mhWmF39d4g4YriF6kwA75mJKE/Zg==}
+  /moment-timezone/0.5.38:
+    resolution: {integrity: sha512-nMIrzGah4+oYZPflDvLZUgoVUO4fvAqHstvG3xAUnMolWncuAiLDWNnJZj6EwJGMGfb1ZcuTFE6GI3hNOVWI/Q==}
     dependencies:
       moment: 2.29.4
     dev: false
