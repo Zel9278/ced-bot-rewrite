@@ -15,9 +15,9 @@ const update = {
 
         const HEAD = `HEAD..${execSync("git remote show", {
             windowsHide: true,
-        }).toString()}/${execSync("git rev-parse --abbrev-ref HEAD", {
+        }).toString().replace(/\n/,"")}/${execSync("git rev-parse --abbrev-ref HEAD", {
             windowsHide: true,
-        }).toString()}`
+        }).toString().replace(/\n/,"")}`
 
         let nfmsg = ""
 
