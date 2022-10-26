@@ -18,7 +18,7 @@
         "luxon": "3.0.4",
         "moment-timezone": "0.5.38",
         "newsapi": "2.4.1",
-        "puppeteer": "19.1.1",
+        "puppeteer": "19.1.2",
         "socket.io": "4.5.3",
         "twit": "2.2.11"
     },
