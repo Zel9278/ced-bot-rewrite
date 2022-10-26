@@ -20,12 +20,18 @@ const info = {
                 name: "info",
                 description: "other info",
                 type: ApplicationCommandOptionType.String,
+                choices: [
+                    {
+                        name: "Packages",
+                        value: "packages"
+                    }
+                ],
+                required: false
             },
         ],
     },
     async exec(interaction) {
         const other = interaction.options.getString("info")
-        const others = ["packages"]
 
         const isWin = os.platform() === "win32"
         const isMac = os.platform() === "darwin"
@@ -118,10 +124,6 @@ const info = {
                                 {
                                     name: "BotUptime",
                                     value: unixToDate(client.uptime),
-                                },
-                                {
-                                    name: "other info",
-                                    value: others.join("\n"),
                                 },
                             ],
                             timestamp: new Date(),
