@@ -2,7 +2,7 @@
     "name": "ced-bot-rewrite",
     "description": "rewriting ced-bot",
     "version": "0.1",
-    "packageManager": "pnpm@7.14.1",
+    "packageManager": "pnpm@7.14.2",
     "dependencies": {
         "@babel/code-frame": "7.18.6",
         "@discordjs/opus": "^0.9.0",
