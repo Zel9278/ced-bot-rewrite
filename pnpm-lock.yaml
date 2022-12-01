@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@babel/code-frame': 7.18.6
   '@discordjs/opus': 0.9.0
-  '@discordjs/voice': 0.13.0
+  '@discordjs/voice': 0.14.0
   axios: 1.2.0
   canvas: 2.10.2
   chart.js: 4.0.1
@@ -25,7 +25,7 @@ specifiers:
 dependencies:
   '@babel/code-frame': 7.18.6
   '@discordjs/opus': 0.9.0
-  '@discordjs/voice': 0.13.0_@discordjs+opus@0.9.0
+  '@discordjs/voice': 0.14.0_@discordjs+opus@0.9.0
   axios: 1.2.0
   canvas: 2.10.2
   chart.js: 4.0.1
@@ -135,8 +135,8 @@ packages:
     engines: {node: '>=16.9.0'}
     dev: false
 
-  /@discordjs/voice/0.13.0_@discordjs+opus@0.9.0:
-    resolution: {integrity: sha512-ZzwDmVINaLgkoDUeTJfpN9TkjINMLfTVoLMtEygm0YC5jTTw7AvKGqhc+Ae/2kNLywd0joyFVNrLp94yCkQ9SA==}
+  /@discordjs/voice/0.14.0_@discordjs+opus@0.9.0:
+    resolution: {integrity: sha512-/LV8LSFuJ1c4OEW1ubPg3al2QNpUpwX8ZL+KL+LORmnUFVCtehSaEh+38uDfWg1O/TgiGI5vOLj4ZKql43drcw==}
     engines: {node: '>=16.9.0'}
     dependencies:
       '@types/ws': 8.5.3
