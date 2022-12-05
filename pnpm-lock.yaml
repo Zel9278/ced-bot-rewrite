@@ -123,7 +123,7 @@ packages:
       '@discordjs/collection': 1.3.0
       '@discordjs/util': 0.1.0
       '@sapphire/async-queue': 1.5.0
-      '@sapphire/snowflake': 3.2.2
+      '@sapphire/snowflake': 3.3.0
       discord-api-types: 0.37.20
       file-type: 18.0.0
       tslib: 2.4.1
@@ -184,8 +184,8 @@ packages:
       lodash.uniqwith: 4.5.0
     dev: false
 
-  /@sapphire/snowflake/3.2.2:
-    resolution: {integrity: sha512-ula2O0kpSZtX9rKXNeQMrHwNd7E4jPDJYUXmEGTFdMRfyfMw+FPyh04oKMjAiDuOi64bYgVkOV3MjK+loImFhQ==}
+  /@sapphire/snowflake/3.3.0:
+    resolution: {integrity: sha512-Hec5N6zEkZuZFLybVKyLFLlcSgYmR6C1/+9NkIhxPwOf6tgX52ndJCSz8ADejmbrNE0VuNCNkpzhRZzenEC9vA==}
     engines: {node: '>=v14.0.0', npm: '>=7.0.0'}
     dev: false
 
@@ -645,7 +645,7 @@ packages:
       '@discordjs/collection': 1.3.0
       '@discordjs/rest': 1.4.0
       '@discordjs/util': 0.1.0
-      '@sapphire/snowflake': 3.2.2
+      '@sapphire/snowflake': 3.3.0
       '@types/ws': 8.5.3
       discord-api-types: 0.37.20
       fast-deep-equal: 3.1.3
