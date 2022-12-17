@@ -6,7 +6,7 @@ specifiers:
   '@discordjs/voice': 0.14.0
   axios: 1.2.1
   canvas: 2.10.2
-  chart.js: 4.0.1
+  chart.js: 4.1.1
   chartjs-node-canvas: 4.1.6
   chartjs-plugin-datalabels: 2.2.0
   cpu-stats: 1.0.0
@@ -28,9 +28,9 @@ dependencies:
   '@discordjs/voice': 0.14.0_@discordjs+opus@0.9.0
   axios: 1.2.1
   canvas: 2.10.2
-  chart.js: 4.0.1
-  chartjs-node-canvas: 4.1.6_chart.js@4.0.1
-  chartjs-plugin-datalabels: 2.2.0_chart.js@4.0.1
+  chart.js: 4.1.1
+  chartjs-node-canvas: 4.1.6_chart.js@4.1.1
+  chartjs-plugin-datalabels: 2.2.0_chart.js@4.1.1
   cpu-stats: 1.0.0
   discord.js: 14.7.1
   diskusage: 1.1.3
@@ -151,6 +151,10 @@ packages:
       - node-opus
       - opusscript
       - utf-8-validate
+    dev: false
+
+  /@kurkle/color/0.3.1:
+    resolution: {integrity: sha512-hW0GwZj06z/ZFUW2Espl7toVDjghJN+EKqyXzPSV8NV89d5BYp5rRMBJoc+aUN0x5OXDMeRQHazejr2Xmqj2tw==}
     dev: false
 
   /@mapbox/node-pre-gyp/1.0.10:
@@ -439,30 +443,32 @@ packages:
       supports-color: 5.5.0
     dev: false
 
-  /chart.js/4.0.1:
-    resolution: {integrity: sha512-5/8/9eBivwBZK81mKvmIwTb2Pmw4D/5h1RK9fBWZLLZ8mCJ+kfYNmV9rMrGoa5Hgy2/wVDBMLSUDudul2/9ihA==}
+  /chart.js/4.1.1:
+    resolution: {integrity: sha512-P0pCosNXp+LR8zO/QTkZKT6Hb7p0DPFtypEeVOf+6x06hX13NIb75R0DXUA4Ksx/+48chDQKtCCmRCviQRTqsA==}
     engines: {pnpm: ^7.0.0}
+    dependencies:
+      '@kurkle/color': 0.3.1
     dev: false
 
-  /chartjs-node-canvas/4.1.6_chart.js@4.0.1:
+  /chartjs-node-canvas/4.1.6_chart.js@4.1.1:
     resolution: {integrity: sha512-UQJbPWrvqB/FoLclGA9BaLQmZbzSYlujF4w8NZd6Xzb+sqgACBb2owDX6m7ifCXLjUW5Nz0Qx0qqrTtQkkSoYw==}
     peerDependencies:
       chart.js: ^3.5.1
     dependencies:
       canvas: 2.10.2
-      chart.js: 4.0.1
+      chart.js: 4.1.1
       tslib: 2.4.1
     transitivePeerDependencies:
       - encoding
       - supports-color
     dev: false
 
-  /chartjs-plugin-datalabels/2.2.0_chart.js@4.0.1:
+  /chartjs-plugin-datalabels/2.2.0_chart.js@4.1.1:
     resolution: {integrity: sha512-14ZU30lH7n89oq+A4bWaJPnAG8a7ZTk7dKf48YAzMvJjQtjrgg5Dpk9f+LbjCF6bpx3RAGTeL13IXpKQYyRvlw==}
     peerDependencies:
       chart.js: '>=3.0.0'
     dependencies:
-      chart.js: 4.0.1
+      chart.js: 4.1.1
     dev: false
 
   /chownr/1.1.4:
