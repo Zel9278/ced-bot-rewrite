@@ -9,5 +9,9 @@
     ":assignAndReview(Zel9278)",
     ":semanticCommits",
     ":disablePrControls"
+  ],
+  "timezone": "Japan",
+  "schedule": [
+    "at 00:00am on Monday"
   ]
 }
