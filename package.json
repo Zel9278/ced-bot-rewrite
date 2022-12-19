@@ -9,7 +9,7 @@
         "@discordjs/voice": "0.14.0",
         "axios": "1.2.1",
         "canvas": "2.10.2",
-        "chart.js": "4.0.1",
+        "chart.js": "4.1.1",
         "chartjs-node-canvas": "4.1.6",
         "chartjs-plugin-datalabels": "2.2.0",
         "cpu-stats": "1.0.0",
