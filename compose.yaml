@@ -1,0 +1,14 @@
+version: "3"
+services:
+    ced-bot_rewrite:
+        container_name: ced-bot_rewrite
+        pull_policy: always
+        build: .
+        env_file: .env
+        restart: always
+        volumes:
+            - type: bind
+              source: ./logs/error
+              target: /app/logs/error
+              bind:
+                  create_host_path: true
